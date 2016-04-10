@@ -1,0 +1,19 @@
+<%= bootstrap_form_for(@chore) do |f| %>
+  <% if @chore.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chore.errors.count, "error") %> prohibited this chore from being saved:</h2>
+
+      <ul>
+      <% @chore.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= f.text_field :name %>
+    <%= f.number_field :priority %>
+    <%= f.number_field :reward %>
+    <%= f.submit  %>
+
+<% end %>
