@@ -14,16 +14,18 @@
     </tr>
   </thead>
   <tbody>
+    <% @users.each do |user| %>
     <tr>
       <td>
-        Test
+        <%= user.name %>
       </td>
       <td>
-        123 euroa
+        <%= user.purchase_sum %>
       </td>
       <td>
-        -123 euroa
+        <%= purchase_average - user.purchase_sum %>
       </td>
     </tr>
+    <% end %>
   </tbody>
 </table>

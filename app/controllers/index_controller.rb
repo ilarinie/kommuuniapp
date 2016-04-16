@@ -3,5 +3,6 @@ class IndexController < ApplicationController
 
   def index
     @chores = current_user.chores
+    @users = User.all
   end
 end
