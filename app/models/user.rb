@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def xp_total_range from_ago
-    self.xps.where("created_at > ?", Time.now-from_ago).sum(:points)
+    self.xps.where("created_at > ?", from_ago).sum(:points)
   end
 
 end

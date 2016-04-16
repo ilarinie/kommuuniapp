@@ -19,7 +19,7 @@
     <footer class="footer">
       <div class="container">
         <p class="text-muted">
-          Logged in as <%= current_user %> | XP: <%= current_user.xp_total %>
+        <% if current_user %>  Logged in as <%= current_user %> | XP: <%= current_user.xp_total %> <% end %>
         </p>
       </div>
     </footer>
