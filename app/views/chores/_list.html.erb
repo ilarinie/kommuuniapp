@@ -10,7 +10,7 @@
     <% chores.each do |chore| %>
     <tr>
       <td>
-        <%= chore.name %>
+         <%= link_to chore.name, chore_path(chore) %>
       </td>
       <td>
         <%= chore.priority %>
