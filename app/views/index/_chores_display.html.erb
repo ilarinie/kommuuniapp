@@ -15,9 +15,9 @@
     <% @chores.each do |chore| %>
     <tr>
       <% if chore.private %>
-      <td class="chore-private">(P) <%= chore.name %></td>
+      <td class="chore-private">&#9734; <%= link_to chore.name, chore_path(chore) %></td>
       <% else %>
-      <td><%= chore.name %></td>
+      <td><%= link_to chore.name, chore_path(chore) %></td>
       <% end %>
       <% if not chore.tasks.empty? %>
       <td><%= chore.tasks.last.user%></td>
@@ -50,7 +50,7 @@
         <% end %>
       </td>
       <td>
-        <%= link_to 'SUORITA', completechore_path(chore), class:"btn btn-primary", method: :post%>
+        <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
       </td>
     </tr>
     <% end %>
