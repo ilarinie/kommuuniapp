@@ -23,7 +23,7 @@
         <%= user.purchase_sum %>
       </td>
       <td>
-        <%= purchase_average - user.purchase_sum %>
+        <%= '%.2f' % (purchase_average - user.purchase_sum) %>
       </td>
     </tr>
     <% end %>

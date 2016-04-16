@@ -1,7 +1,10 @@
-<h1> Purchases list </h1>
+
+
+<h1><%= @category.name %></h1>
+
 <p>
 <%= label_tag 'Select gategory to show:' %>
-<%= select_tag(:menu_select, options_from_collection_for_select(@categories, :id, :to_s)) %>
+<%= select_tag(:menu_select, options_from_collection_for_select(@categories, :id, :to_s, params[:id])) %>
 <%= link_to 'Show all', purchases_path %>
 <p>
 <script type="text/javascript">

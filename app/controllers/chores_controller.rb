@@ -88,6 +88,8 @@ class ChoresController < ApplicationController
     task.user = current_user
     task.chore = Chore.find(params["format"])
     if task.save
+      xp = Xp.create source:"Chore: "+task.chore.name, points:task.chore.reward
+      current_user.xps << xp
       redirect_to :root, notice: 'Nicely done'
     else
       redirect_to :root, notice: 'Something went wrong, try again'

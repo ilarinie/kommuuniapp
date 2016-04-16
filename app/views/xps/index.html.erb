@@ -1,0 +1,20 @@
+<h1> Top lists </h1>
+
+<h2>Weekly top list</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td> <%= user.name %> </td>
+      <td> <%= user.xp_total_range(7.days) %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

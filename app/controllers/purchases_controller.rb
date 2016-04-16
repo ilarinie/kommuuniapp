@@ -7,10 +7,13 @@ class PurchasesController < ApplicationController
   end
 
   def index
-    @purchases = Purchase.all
+    @purchases = Purchase.paginate(:page => params[:page]).order(created_at: :desc)
+    @categories = PurchaseCategory.all
   end
 
   def create
+  
+
   end
 
 end

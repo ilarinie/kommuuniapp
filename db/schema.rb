@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416184729) do
+ActiveRecord::Schema.define(version: 20160416221243) do
 
   create_table "chore_users", force: :cascade do |t|
     t.integer  "user_id"
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 20160416184729) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+  end
+
+  create_table "xps", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "source"
+    t.integer  "points"
+    t.integer  "user_id"
   end
 
 end
