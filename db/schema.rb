@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329131107) do
+ActiveRecord::Schema.define(version: 20160416120039) do
 
   create_table "chore_users", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20160329131107) do
     t.integer  "reward"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "creator_id"
+    t.boolean  "private"
   end
 
   create_table "tasks", force: :cascade do |t|

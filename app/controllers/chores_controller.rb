@@ -5,12 +5,16 @@ class ChoresController < ApplicationController
   # GET /chores
   # GET /chores.json
   def index
-    @chores = Chore.all
+    @chores = Chore.where('private=? OR private=?',false,nil)
+    @privatechores = Chore.where(private:true, creator_id:current_user.id)
   end
 
   # GET /chores/1
   # GET /chores/1.json
   def show
+    if @chore.private && current_user.id != @chore.creator_id
+      redirect_to :root, notice: 'That chore is private'
+    end
     @users = sort_users_by_task_count
   end
 
@@ -27,7 +31,7 @@ class ChoresController < ApplicationController
   # POST /chores.json
   def create
     @chore = Chore.new(chore_params)
-
+    @chore.creator_id = current_user.id
     respond_to do |format|
       if @chore.save
         format.html { redirect_to @chore, notice: 'Chore was successfully created.' }
@@ -63,6 +67,33 @@ class ChoresController < ApplicationController
     end
   end
 
+  # POST /publishchore
+  # Makes a private chore public
+  def publish
+    @chore = Chore.find(params["format"])
+    if current_user.id == @chore.creator_id
+      @chore.private = false
+    else
+      redirect_to :root, notice: 'Not your chore'
+    end
+    if @chore.save
+      redirect_to chores_path, notice: 'Chore made visible to everyone'
+    else
+      redirect_to chores_path, notice: 'Error publishing chore'
+    end
+  end
+
+  def complete
+    task = Task.new
+    task.user = current_user
+    task.chore = Chore.find(params["format"])
+    if task.save
+      redirect_to :root, notice: 'Nicely done'
+    else
+      redirect_to :root, notice: 'Something went wrong, try again'
+    end
+  end
+
 
   def sort_users_by_task_count
     @users = User.all
@@ -81,6 +112,6 @@ class ChoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chore_params
-      params.require(:chore).permit(:name, :priority, :reward)
+      params.require(:chore).permit(:name, :priority, :reward, :private)
     end
 end

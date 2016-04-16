@@ -5,8 +5,17 @@ Rails.application.routes.draw do
   get 'index', to: 'index#index'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
+
+  # adds chore to the users list
   post 'addchore', to: 'chore_users#add_to_user'
+
+  # removes chore from the users list
   delete 'removechore', to: 'chore_users#remove_from_user'
+
+  # makes a private chore public
+  post 'publishchore', to: 'chores#publish'
+
+  post 'completechore', to: 'chores#complete'
 
   root 'index#index'
 

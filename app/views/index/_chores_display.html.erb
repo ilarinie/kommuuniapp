@@ -2,42 +2,46 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Tehtävä</th>
-      <th>Viimeksi tehnyt</th>
-      <th >Viimeksi tehty</th>
-      <th>Aikaa jäljellä</th>
-      <th>Pisteet</th>
-      <th>Suorita</th>
+      <th>Chore</th>
+      <th>Last done by</th>
+      <th>Last done at</th>
+      <th>Due in</th>
+      <th>Points</th>
+      <th>Complete</th>
     </tr>
   </thead>
   <tbody>
 
     <% @chores.each do |chore| %>
     <tr>
-      <td><%=  chore.name %></td>
+      <% if chore.private %>
+      <td class="chore-private">(P) <%= chore.name %></td>
+      <% else %>
+      <td><%= chore.name %></td>
+      <% end %>
       <% if not chore.tasks.empty? %>
       <td><%= chore.tasks.last.user%></td>
       <td><%= Time.at(chore.tasks.last.created_at).utc.getlocal('+02:00').strftime("%d.%m klo %H:%M") %></td>
 
       <% if Time.at(chore.tasks.last.created_at)+chore.priority.hours < Time.now %>
-      <td>
-        Myöhässä, tee nyt!
+      <td class="td-late">
+        Late! Do it now
       </td>
 
       <% elsif Time.now-((Time.at(chore.tasks.last.created_at)+chore.priority.hours)) > -3600 %>
-      <td>
-        Tee mielellään heti
+      <td class="td-late">
+        You should be doing it now
       </td>
     <% else %>
-      <td>
+      <td class="td-ontime">
         <b><%= distance_of_time_in_words(chore.tasks.last.created_at + chore.priority.hours, Time.now, false) %>
         </b>
       </td>
       <% end %>
     <% else %>
-      <td>Ei kukaan</td>
-      <td>Ei koskaan</td>
-      <td>Tee heti?</td>
+      <td>Nobody</td>
+      <td>Never</td>
+      <td>Do it now?</td>
       <% end %>
 
       <td>
@@ -46,7 +50,7 @@
         <% end %>
       </td>
       <td>
-        <%= 'SUORITA'%>
+        <%= link_to 'SUORITA', completechore_path(chore), class:"btn btn-primary", method: :post%>
       </td>
     </tr>
     <% end %>

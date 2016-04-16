@@ -1,37 +1,8 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Chores</h1>
+<%= render 'list', chores: @chores %>
 
-<table class="table table-hover table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Priority</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @chores.each do |chore| %>
-    <tr>
-      <td>
-        <%= chore.name %>
-      </td>
-      <td>
-        <%= chore.priority %>
-      </td>
-      <td><%= link_to 'Show', chore,class:"btn btn-primary" %></td>
-      <td><%= link_to 'Edit', edit_chore_path(chore),class:"btn btn-primary" %></td>
-      <td><%= link_to 'Destroy', chore, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
-      <% if not current_user.chores.include? chore %>
-      <td><%= link_to 'Add to frontpage', addchore_path(chore), method: :post, class:"btn btn-primary" %></td>
-      <% else %>
-      <td><%= link_to 'Remove from frontpage', removechore_path(chore), method: :delete, class:"btn btn-danger" %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<h1>Private Chores</h1>
+<%= render 'list', chores: @privatechores %>
 <br>
 
 <%= link_to 'New Chore', new_chore_path, class:"btn btn-primary" %>
