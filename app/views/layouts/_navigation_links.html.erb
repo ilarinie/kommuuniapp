@@ -4,6 +4,18 @@
   <%= link_to 'Chores', chores_path %>
 </li>
 <li>
+  <%= link_to 'Purchases', purchases_path %>
+</li>
+<li>
+  <%= link_to 'New Purchase', new_purchase_path %>
+</li>
+<li>
+  <%= link_to 'Top Lists', xps_path %>
+</li>
+<li>
+  <%= link_to current_user, user_path(current_user) %>
+</li>
+<li>
 <%= link_to 'logout', signout_url, method: :delete %>
 </li>
 <% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416120039) do
+ActiveRecord::Schema.define(version: 20160416221243) do
 
   create_table "chore_users", force: :cascade do |t|
     t.integer  "user_id"
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(version: 20160416120039) do
     t.boolean  "private"
   end
 
+  create_table "purchase_categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "purchase_category_id"
+    t.string   "description"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.decimal  "price",                precision: 8, scale: 2
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "chore_id"
@@ -44,6 +59,14 @@ ActiveRecord::Schema.define(version: 20160416120039) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "password_digest"
+  end
+
+  create_table "xps", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "source"
+    t.integer  "points"
+    t.integer  "user_id"
   end
 
 end

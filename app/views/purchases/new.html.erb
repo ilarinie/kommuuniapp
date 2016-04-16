@@ -1,0 +1,12 @@
+<%= bootstrap_form_for(@purchase) do |f| %>
+
+  <h1>New Purchase</h1>
+  <%= f.text_field :description %>
+  <%= f.number_field :price, :class => 'text_field', :step => '0.01' %>
+  <%= f.select :purchase_category_id, options_from_collection_for_select(@categories, :id, :to_s) %>
+  <%= f.submit %>
+
+
+
+
+<% end %>

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   resources :chores
+  resources :purchases
+  resources :purchase_categories
+  resources :users, only: [:show]
+  resources :xps, only: [:index]
   resource :session, only: [:new, :create, :destroy]
 
   get 'index', to: 'index#index'
