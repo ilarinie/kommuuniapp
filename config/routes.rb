@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'index', to: 'index#index'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
+  post 'addchore', to: 'chore_users#add_to_user'
+  delete 'removechore', to: 'chore_users#remove_from_user'
 
   root 'index#index'
 

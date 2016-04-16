@@ -11,6 +11,7 @@ class ChoresController < ApplicationController
   # GET /chores/1
   # GET /chores/1.json
   def show
+    @users = sort_users_by_task_count
   end
 
   # GET /chores/new
@@ -60,6 +61,16 @@ class ChoresController < ApplicationController
       format.html { redirect_to chores_url, notice: 'Chore was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+
+  def sort_users_by_task_count
+    @users = User.all
+    maarat = {}
+    @users.each do |user|
+      maarat[user.id] = Task.where(user_id:user.id, chore_id:@chore.id).count
+    end
+    maarat.sort_by {|k,v| v}.reverse
   end
 
   private

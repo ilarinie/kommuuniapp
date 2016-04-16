@@ -1,4 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_chore_path(@chore) %> |
-<%= link_to 'Back', chores_path %>
+<div class="row">
+  <div class="col-md-5 col-centered">
+    <h2><%= @chore.name %></h2>
+
+    <h3>Statistics</h3>
+    <table class="table">
+      <thead>
+        <th>User</th>
+        <th>Count</th>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= User.find(user.first).to_s %>
+          </td>
+          <td>
+            <%= user.last %> times
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= link_to 'Edit', edit_chore_path(@chore), class:"btn btn-primary"%>
+    |
+    <%= link_to 'Back', chores_path, class:"btn btn-primary" %>
+  </div>
+</div>

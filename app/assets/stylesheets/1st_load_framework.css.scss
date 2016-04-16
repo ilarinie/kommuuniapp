@@ -1,6 +1,6 @@
 $navbar-inverse-bg: rgb(171,14,9);
 $navbar-inverse-link-color: rgb(255,191,0);
-$text-color: rgb(255,191,0);
+$text-color: #000;
 // import the CSS framework
 @import "bootstrap-sprockets";
 @import "bootstrap";
@@ -42,25 +42,26 @@ body {
   margin-top: 50px;
   margin-bottom: 60px;
   /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-
-
-  background-color: rgb(171,14,9);
-
+  background-color: #FFF;
 }
 @media (max-width: $screen-xs) {
   body {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 @media (max-width: $screen-sm) {
   body {
-    font-size: 8px;
+    font-size: 10px;
   }
 }
 main {
   @extend .container;
   width: 100%;
   margin-top: 51px; // accommodate the navbar
+}
+.col-centered{
+    float: none;
+    margin: 0 auto;
 }
 .footer {
   position: absolute;
