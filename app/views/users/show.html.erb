@@ -1,3 +1,38 @@
-<div class="col-md-5 col-centered">
+<div class="col-md-10 col-centered">
 <h1><%= @user.name %></h1>
+
+<% if @user == current_user %>
+
+<div class="col-md-5">
+
+ <%= render 'refundlist' %>
+
+</div>
+<div class="col-md-5">
+
+ <%= render 'pending_refundlist' %>
+
+</div>
+
+<div class="col-md-5">
+<% if not @todos.empty? %>
+  <h2>Private TODOS</h2>
+ <%= render '/todos/list', todos: @todos %>
+<% else %>
+ <p>No uncompleted private todos.</p>
+ <% end %>
+</div>
+<div class="col-md-5">
+ <% if not @comptodos.empty? %>
+ <h2>Completed private todos</h2>
+ <%= render '/todos/completed_list', todos: @comptodos %>
+ <% else %>
+ <p>No completed private todos.</p>
+ <% end %>
+</div>
+<% end %>
+
+<p>
+
+</p>
 </div>

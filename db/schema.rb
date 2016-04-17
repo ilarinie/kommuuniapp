@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416221243) do
+ActiveRecord::Schema.define(version: 20160417164538) do
 
   create_table "chore_users", force: :cascade do |t|
     t.integer  "user_id"
@@ -45,11 +45,63 @@ ActiveRecord::Schema.define(version: 20160416221243) do
     t.decimal  "price",                precision: 8, scale: 2
   end
 
+  create_table "refunds", force: :cascade do |t|
+    t.integer  "payer_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.decimal  "amount",      precision: 8, scale: 2
+    t.boolean  "confirmed"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "chore_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "todo_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "priority"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "todo_comments", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "comment"
+    t.integer  "todo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "todo_solutions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "solution"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "todo_id"
+  end
+
+  create_table "todo_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "todo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.integer  "todo_user_id"
+    t.string   "title"
+    t.string   "description"
+    t.integer  "todo_category_id"
+    t.datetime "due"
+    t.boolean  "private"
+    t.integer  "creator_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "todo_solution_id"
   end
 
   create_table "users", force: :cascade do |t|

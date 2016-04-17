@@ -1,0 +1,41 @@
+<div class="col-md-5 col-centered">
+
+<h1>TODO: <%= @todo.title %></h1>
+
+<p>
+  <h3>Category</h3>
+  <%= @todo.todo_category %>
+</p>
+
+<p>
+  <h3>Description</h3>
+  <%= @todo.description %>
+</p>
+
+
+<% if @todo.todo_solution.nil? %>
+
+
+
+<%= bootstrap_form_for(@solution) do |f| %>
+
+<%= f.hidden_field :todo_id, :value => @todo.id %>
+<%= f.text_area :solution %>
+
+<%= f.submit %>
+
+<% end %>
+
+<% else %>
+<h3>Solution:</h3>
+<p>
+  <p>
+    <%= @todo.todo_solution.solution %><br />
+  </p>
+   By <b><%= User.find(@todo.todo_solution.user_id) %></b> at <%= @todo.todo_solution.created_at %>
+</p>
+
+
+<% end %>
+
+</div>

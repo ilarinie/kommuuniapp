@@ -1,0 +1,36 @@
+
+<% if not @pendrefunds.empty? %>
+ <h2>Sent refunds</h2>
+  <table class="table table-hover" >
+  <thead>
+    <tr>
+      <th>
+        To
+      </th>
+      <th>
+        Amount
+      </th>
+      <th>
+        Cancel
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pendrefunds.each do |refund| %>
+    <tr>
+      <td>
+        <%= User.find(refund.receiver_id).to_s %>
+      </td>
+      <td>
+        <%= refund.amount %>
+      </td>
+      <td>
+        <%= link_to 'Cancel', cancelrefund_path(refund), method: :post, class:"btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+
+
+<% end %>

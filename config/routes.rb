@@ -2,8 +2,11 @@ Rails.application.routes.draw do
   resources :chores
   resources :purchases
   resources :purchase_categories
+  resources :todo_solutions, only: [:create, :destroy]
   resources :users, only: [:show]
   resources :xps, only: [:index]
+  resources :todos, only: [:new, :show, :index, :create, :update, :destroy]
+  resources :refunds, only: [:new,:index,:create]
   resource :session, only: [:new, :create, :destroy]
 
   get 'index', to: 'index#index'
@@ -19,7 +22,13 @@ Rails.application.routes.draw do
   # makes a private chore public
   post 'publishchore', to: 'chores#publish'
 
+  # creates a new task for the chore
   post 'completechore', to: 'chores#complete'
+
+  # refunds
+  post 'confirmrefund', to: 'refunds#confirm'
+  post 'cancelrefund', to: 'refunds#cancel'
+
 
   root 'index#index'
 

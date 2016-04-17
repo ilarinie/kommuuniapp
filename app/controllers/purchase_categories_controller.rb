@@ -11,6 +11,7 @@ private
 
 def set_purchase_category
   @category = PurchaseCategory.find(params[:id])
+
 end
 
 end

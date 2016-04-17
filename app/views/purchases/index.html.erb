@@ -3,7 +3,7 @@
 <%= label_tag 'Select gategory to show:' %>
 <%= select_tag(:menu_select, options_from_collection_for_select(@categories, :id, :to_s)) %>
 <%= link_to 'Show all', purchases_path %>
-<p>
+</p>
 <script type="text/javascript">
   $('#menu_select').bind('change', function() {
     window.location.pathname = "purchase_categories/"+$(this).val()
@@ -42,6 +42,9 @@
         <%= purchase.description %>
       </td>
       <td>
+        <% if purchase.purchase_category.nil? %>
+          Refund
+        <% end %>
         <%= purchase.purchase_category %>
       </td>
       <td>

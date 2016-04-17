@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(@todo) do |f| %>
+<h1>New TODO</h1>
+
+<%= f.text_field :title %>
+<%= f.text_area :description %>
+<%= f.select :todo_category_id, options_from_collection_for_select(@categories, :id, :to_s) %>
+<%= f.datetime_select :due, {:include_blank => true, :default => nil} %>
+<%= f.check_box :private %>
+<%= f.submit %>
+
+<% end %>

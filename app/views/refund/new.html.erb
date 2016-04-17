@@ -1,0 +1,22 @@
+<%= bootstrap_form_for(@refund) do |f| %>
+<% if @refund.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@refund.errors.count, "error") %>
+    prohibited this chore from being saved:</h2>
+
+  <ul>
+    <% @refund.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<h1>New refund</h1>
+
+<%= f.select :receiver_id, options_from_collections_for_select(@users, :id, :to_s) %>
+<%= f.number_field :amount, :class => 'text_field', :step => '0.01' %>
+<% f.hidden_field :payer_id, :value => current_user.id %>
+<%= f.submit %>
+
+<%end %>

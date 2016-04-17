@@ -1,6 +1,6 @@
 <h1> Top lists </h1>
 
-<h2>Weekly top list</h2>
+<h2>Weekly</h2>
 
 <table class="table table-hover">
   <thead>
@@ -14,6 +14,25 @@
     <tr>
       <td> <%= user.name %> </td>
       <td> <%= user.xp_total_range(Date.today.beginning_of_week) %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Monthly</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @monthlyusers.each do |user| %>
+    <tr>
+      <td> <%= user.name %> </td>
+      <td> <%= user.xp_total_range(Date.today.beginning_of_month) %> </td>
     </tr>
     <% end %>
   </tbody>

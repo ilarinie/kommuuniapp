@@ -1,0 +1,41 @@
+<% if not @refunds.empty? %>
+<h2>Uncorfimed refunds</h2>
+  <table class="table table-hover" >
+  <thead>
+    <tr>
+      <th>
+        From
+      </th>
+      <th>
+        Amount
+      </th>
+      <th>
+        Confirm
+      </th>
+      <th>
+        Reject
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @refunds.each do |refund| %>
+    <tr>
+      <td>
+        <%= User.find(refund.payer_id).to_s %>
+      </td>
+      <td>
+        <%= refund.amount %>
+      </td>
+      <td>
+        <%= link_to 'Confirm', confirmrefund_path(refund), method: :post, class:"btn btn-primary" %>
+      </td>
+      <td>
+        <%= link_to 'Reject', cancelrefund_path(refund), method: :post, class:"btn btn-danger" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+  </table>
+
+
+<% end %>

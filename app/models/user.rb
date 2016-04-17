@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   has_many :chores, through: :chore_users
   has_many :purchases
   has_many :xps
+  has_many :todo_users
+  has_many :todos, through: :todo_users
 
   has_secure_password
 
