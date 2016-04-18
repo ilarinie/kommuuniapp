@@ -5,6 +5,7 @@ before_install:
   - "rm ${BUNDLE_GEMFILE}.lock"
 before_script:
   - bundle update
+  - bundle exec rake db:migrate
 cache: bundler
 env:
   matrix:
