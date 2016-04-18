@@ -15,11 +15,11 @@
 
 * Suorita -nappula TODO listaan --> show
 * New refund nappulalle paikka
-* Luontinappuloille btn-success -tyyli
-    * new chore
-    * new purchase
-    * new todo
-    * new refund
+* ~~Luontinappuloille btn-success -tyyli~~
+    * ~~new chore~~
+    * ~~new purchase~~
+    * ~~new todo~~
+    * ~~new refund~~
 * Refund accept ohjaus takaisin user -näkymään
 
 
