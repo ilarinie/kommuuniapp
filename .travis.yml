@@ -3,6 +3,7 @@ language: ruby
 script:
   - bundle exec rake db:migrate --trace
   - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - "rm ${BUNDLE_GEMFILE}.lock"
 
 rvm:
   - 2.3.0
