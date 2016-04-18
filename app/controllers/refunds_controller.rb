@@ -24,7 +24,7 @@ class RefundsController < ApplicationController
         plus = Purchase.new(user_id:@refund.payer_id, price:@refund.amount, description:refund_description(@refund))
         minus = Purchase.new(user_id:@refund.receiver_id, price:@refund.amount*(-1), description:refund_description(@refund))
         if plus.save && minus.save
-          redirect_to :root, notice: 'Confirmed succesfully'
+          redirect_to :back, notice: 'Confirmed succesfully'
         else
           redirect_to :back, alert: 'Something went wrong'
         end
