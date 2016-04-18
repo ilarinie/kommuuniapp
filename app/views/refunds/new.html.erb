@@ -17,6 +17,6 @@
 <%= f.select :receiver_id, options_from_collection_for_select(@users, :id, :to_s) %>
 <%= f.number_field :amount, :class => 'text_field', :step => '0.01' %>
 <% f.hidden_field :payer_id, :value => current_user.id %>
-<%= f.submit %>
+<%= f.submit, :class => 'btn btn-success' %>
 
 <%end %>
