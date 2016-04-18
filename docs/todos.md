@@ -5,7 +5,7 @@
 * TODO comments
 * Navbar layout
 * Footer layout
-* User management -näkymä
+* User management -näkym
 
 
 
