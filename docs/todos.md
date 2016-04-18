@@ -1,6 +1,6 @@
 # TODO
 
-# MAJOR
+## MAJOR
 
 * TODO comments
 * Navbar layout
@@ -11,7 +11,7 @@
 
 
 
-# MINOR
+## MINOR
 
 * Suorita -nappula TODO listaan --> show
 * New refund nappulalle paikka
@@ -23,4 +23,4 @@
 * Refund accept ohjaus takaisin user -näkymään
 
 
-# IDEAS
+## IDEAS
