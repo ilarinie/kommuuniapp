@@ -6,6 +6,6 @@
 <%= f.select :todo_category_id, options_from_collection_for_select(@categories, :id, :to_s) %>
 <%= f.datetime_select :due, {:include_blank => true, :default => nil} %>
 <%= f.check_box :private %>
-<%= f.submit %>
+<%= f.submit, :class => 'btn btn-success' %>
 
 <% end %>
