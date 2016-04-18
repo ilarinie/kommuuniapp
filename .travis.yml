@@ -1,8 +1,6 @@
 language: ruby
 
 script:
-  - bundle update
-  - "rm ${BUNDLE_GEMFILE}.lock"
   - bundle exec rake db:migrate --trace
   - RAILS_ENV=test bundle exec rake db:migrate --trace
   
