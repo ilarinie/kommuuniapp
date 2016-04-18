@@ -1,26 +1,9 @@
 language: ruby
-sudo: false
-before_install:
-  - gem install bundler
-  - "rm ${BUNDLE_GEMFILE}.lock"
-before_script:
-  - bundle update
+
+script:
   - bundle exec rake db:migrate --trace
   - RAILS_ENV=test bundle exec rake db:migrate --trace
-cache: bundler
-env:
-  matrix:
-    - "GEM=ar:sqlite3"
-    - "GEM=ar:postgresql"
+
 rvm:
   - 2.3.0
-matrix:
-  include:
-    # Latest compiled version in http://rubies.travis-ci.org
-    - rvm: 2.3.0
-  allow_failures:
-    - rvm: ruby-head
 
-
-addons:
-  postgresql: "9.4"
