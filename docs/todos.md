@@ -1,4 +1,4 @@
-# TODO:
+# TODO
 
 # MAJOR
 
@@ -21,3 +21,6 @@
     * new todo
     * new refund
 * Refund accept ohjaus takaisin user -näkymään
+
+
+# IDEAS
