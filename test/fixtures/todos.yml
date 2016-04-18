@@ -2,7 +2,6 @@
 
 one:
   todo_user_id: 1
-  solver_id: 1
   title: MyString
   description: MyString
   todo_category_id: 1
@@ -13,7 +12,6 @@ one:
 
 two:
   todo_user_id: 1
-  solver_id: 1
   title: MyString
   description: MyString
   todo_category_id: 1
