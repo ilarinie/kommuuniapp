@@ -3,9 +3,6 @@ sudo: false
 script: 'ci/travis.rb'
 before_install:
   - gem install bundler
-  - "rm ${BUNDLE_GEMFILE}.lock"
-  - curl -L https://github.com/kr/beanstalkd/archive/v1.10.tar.gz | tar xz -C /tmp
-  - cd $TRAVIS_BUILD_DIR
 before_script:
   - bundle install
   - bundle update
@@ -15,9 +12,7 @@ env:
     - "GEM=ar:sqlite3"
     - "GEM=ar:postgresql"
 rvm:
-  - 2.2.4
   - 2.3.0
-  - ruby-head
 matrix:
   include:
     # Latest compiled version in http://rubies.travis-ci.org
