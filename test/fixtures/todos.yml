@@ -6,7 +6,6 @@ one:
   description: MyString
   todo_category_id: 1
   due: 2016-04-17 12:19:03
-  solution: MyString
   private: false
   creator_id: 1
 
@@ -16,6 +15,5 @@ two:
   description: MyString
   todo_category_id: 1
   due: 2016-04-17 12:19:03
-  solution: MyString
   private: false
   creator_id: 1
