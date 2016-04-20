@@ -11,6 +11,9 @@
     <th>
       Due in
     </th>
+    <th>
+      Solve!
+    </th>
   </thead>
   <tbody>
     <% todos.each do |todo| %>
@@ -23,6 +26,9 @@
       </td>
       <td>
         <%= todo.due %>
+      </td>
+      <td>
+        <%= link_to 'Solve!', todos_path(todo), class:"btn btn-primary" %>
       </td>
     </tr>
     <% end %>
