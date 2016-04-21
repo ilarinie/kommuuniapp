@@ -89,6 +89,7 @@ class ChoresController < ApplicationController
     task.chore = Chore.find(params["format"])
     if task.save
       if not task.chore.private
+        TelegramApi.send_to_channel ""+task.user.to_s+" has just finished "+task.chore.to_s+""
       xp = Xp.create source:"Chore: "+task.chore.name, points:task.chore.reward
       current_user.xps << xp
     end

@@ -1,5 +1,4 @@
 <div class="col-md-10 col-centered">
-  <%= average_purchase %>
   <h1><%= @user.name %></h1>
 
   <% if @user == current_user %>
@@ -38,7 +37,7 @@
       <% if current_user.admin? %>
       <h2>Administration tools</h2>
       <p>
-        <%= link_to 'User Management', manageusers_url, class:"btn btn-primary" %>
+        <%= link_to 'User Management', '/manage/users', class:"btn btn-primary", method: :get%>
       </p>
       <% end %>
 

@@ -1,13 +1,26 @@
 <%= bootstrap_form_for(@purchase) do |f| %>
+<% if @purchase.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@purchase.errors.count, "error") %>
+    prohibited this purchase from being saved:</h2>
 
-  <h1>New Purchase</h1>
-  <%= f.text_field :description %>
-  <%= f.number_field :price, :class => 'text_field', :step => '0.01' %>
-  <%= f.select :purchase_category_id, options_from_collection_for_select(@categories, :id, :to_s) %>
+  <ul>
+    <% @purchase.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <%= f.submit  :class => 'btn btn-success' %>
+<h1>New Purchase</h1>
+<%= f.text_field :description %>
+<%= f.number_field :price, :class => 'text_field', :step => '0.01' %>
+<%= f.select :purchase_category_id, options_from_collection_for_select(@categories, :id, :to_s) %>
 
-
-
+<%= f.submit  :class => 'btn btn-success' %>
 
 <% end %>
+<br />
+<h2>Create New Category:</h2>
+<br />
+  <%= link_to 'New Purchase Category', new_purchase_category_path, class:"btn btn-primary" %>

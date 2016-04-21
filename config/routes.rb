@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :chores
   resources :purchases
-  resources :purchase_categories
+  resources :purchase_categories, only: [:show, :new, :create]
   resources :todo_solutions, only: [:create, :destroy]
   resources :users
   resources :xps, only: [:index]
@@ -31,7 +31,7 @@ Rails.application.routes.draw do
 
   #user reactivation
   post 'activateuser/:id', to: 'users#activate'
-  get 'manageusers', to: 'users#manage'
+  get 'manage/users', to: 'users#manage'
 
 
   root 'index#index'

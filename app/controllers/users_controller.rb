@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     end
 
   def manage
+    
     @users = User.active
     @dusers = User.deactivated
     @user = User.new

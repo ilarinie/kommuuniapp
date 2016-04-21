@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'telegram-bot-ruby'
+
 group :development, :test do
 gem 'rspec-rails', '~> 3.0'
 gem 'sqlite3'

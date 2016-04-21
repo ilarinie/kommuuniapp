@@ -18,10 +18,6 @@ class ApplicationController < ActionController::Base
    redirect_to :root, alert: 'Trying to access admin-only resources.' if not current_user.admin?
  end
 
- def purchase_average
-   Purchase.sum(:price)/User.count
- end
-
  def average_purchase
    summa = 0
    User.active.each do |user|

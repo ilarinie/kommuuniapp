@@ -8,7 +8,11 @@ def create
 
 
   if @solution.save
-    t = Todo.find(solution_params[:todo_id]).update(todo_solution_id:@solution.id)
+    t = Todo.find(solution_params[:todo_id])
+    t.update(todo_solution_id:@solution.id)
+    if not t.private
+      TelegramApi.send_to_channel ""+User.find(@solution.user_id).to_s+" solved "+t.title+"! Solution: "+@solution.solution
+    end
     redirect_to :back, notice: 'TODO solved succesfully'
   else
     redirect_to :back, alert: 'Error, try again'
