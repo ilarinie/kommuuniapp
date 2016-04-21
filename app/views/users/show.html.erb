@@ -1,38 +1,48 @@
 <div class="col-md-10 col-centered">
-<h1><%= @user.name %></h1>
+  <%= average_purchase %>
+  <h1><%= @user.name %></h1>
 
-<% if @user == current_user %>
+  <% if @user == current_user %>
 
-<div class="col-md-5">
+  <div class="col-md-5">
 
- <%= render 'refundlist' %>
+    <%= render 'refundlist' %>
 
-</div>
-<div class="col-md-5">
+  </div>
+  <div class="col-md-5">
 
- <%= render 'pending_refundlist' %>
+    <%= render 'pending_refundlist' %>
 
-</div>
+  </div>
 
-<div class="col-md-5">
-<% if not @todos.empty? %>
-  <h2>Private TODOS</h2>
- <%= render '/todos/list', todos: @todos %>
-<% else %>
- <p>No uncompleted private todos.</p>
- <% end %>
-</div>
-<div class="col-md-5">
- <% if not @comptodos.empty? %>
- <h2>Completed private todos</h2>
- <%= render '/todos/completed_list', todos: @comptodos %>
- <% else %>
- <p>No completed private todos.</p>
- <% end %>
-</div>
-<% end %>
+  <div class="col-md-5">
+    <% if not @todos.empty? %>
+    <h2>Private TODOS</h2>
+    <%= render '/todos/list', todos: @todos %>
+  <% else %>
+    <p>No uncompleted private todos.</p>
+    <% end %>
+  </div>
+  <div class="col-md-5">
+    <% if not @comptodos.empty? %>
+    <h2>Completed private todos</h2>
+    <%= render '/todos/completed_list', todos: @comptodos %>
+  <% else %>
+    <p>No completed private todos.</p>
+    <% end %>
+  </div>
+  <% end %>
 
-<p>
+  <div class="row">
+    <div class="col-md-4">
+      <% if current_user.admin? %>
+      <h2>Administration tools</h2>
+      <p>
+        <%= link_to 'User Management', manageusers_url, class:"btn btn-primary" %>
+      </p>
+      <% end %>
 
-</p>
+    </div>
+
+  </div>
 </div>

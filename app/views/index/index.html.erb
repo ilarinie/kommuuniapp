@@ -1,15 +1,20 @@
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-10" id="chores">
-        <%= render 'chores_display' %>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10" id="chores">
+      <%= render 'chores_display' %>
     </div>
-    <div class="row">
-      <div class="col-sm-5 col-md-5 col-lg-5" id="budget">
-        <%= render 'budget_display'%>
-      </div>
-      <div class="col-sm-4 col-md-4 col-lg-5" id="todos">
-        <%= render 'todos_display' %>
-      </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-5" id="todos">
+      <h2>Todos due soon</h2>
+      <%= render 'todos/list', todos:@todos %>
+    </div>
+    <div class="col-sm-5 col-md-5 col-lg-5" id="budget">
+      <%= render 'budget_display'%>
     </div>
   </div>
+  <div class="row">
+
+  </div>
+</div>

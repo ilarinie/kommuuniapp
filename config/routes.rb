@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :purchases
   resources :purchase_categories
   resources :todo_solutions, only: [:create, :destroy]
-  resources :users, only: [:show]
+  resources :users
   resources :xps, only: [:index]
   resources :todos, only: [:new, :show, :index, :create, :update, :destroy]
   resources :refunds, only: [:new,:index,:create]
@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   # refunds
   post 'confirmrefund', to: 'refunds#confirm'
   post 'cancelrefund', to: 'refunds#cancel'
+
+  #user reactivation
+  post 'activateuser/:id', to: 'users#activate'
+  get 'manageusers', to: 'users#manage'
 
 
   root 'index#index'

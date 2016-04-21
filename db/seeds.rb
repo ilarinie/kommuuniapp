@@ -8,6 +8,7 @@
 
 #Default purchase category needed for handling refunds
 PurchaseCategory.create! id:1, name:"Refund"
+User.create(name:"Adminaccount",username:"admin",password:"admin",password_confirmation:"admin", admin:true, deactivated:false)
 
 # Mock data only used for testing purposes in development
 case Rails.env
@@ -22,7 +23,7 @@ when "development"
   todos = 30
 
   (1..users).each do |i|
-    User.create! name:Faker::Name.name, username:"test_#{i}", password:"1234", password_confirmation:"1234"
+    User.create! name:Faker::Name.name, username:"test_#{i}", password:"1234", password_confirmation:"1234", deactivated:false
   end
 
   (1..chores).each do |i|

@@ -3,9 +3,12 @@ class User < ActiveRecord::Base
   has_many :tasks
   has_many :chores, through: :chore_users
   has_many :purchases
-  has_many :xps
+  has_many :xps, dependent: :destroy
   has_many :todo_users
   has_many :todos, through: :todo_users
+
+  scope :active, -> { where deactivated:[nil,false]}
+  scope :deactivated, -> { where deactivated:true }
 
   has_secure_password
 

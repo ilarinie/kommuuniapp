@@ -1,0 +1,127 @@
+<h1>Users list</h1>
+
+<table class="table table-hover">
+  <thead>
+    <th>
+      Username
+    </th>
+    <th>
+      Name
+    </th>
+    <th>
+      Password
+    </th>
+    <th>
+      Password_confirmation
+    </th>
+    <th>
+      Admin?
+    </th>
+    <th>
+      Save
+    </th>
+    <th>
+      Delete
+    </th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+    <%= form_for(user) do |f| %>
+    <tr>
+      <td>
+        <b><%= user.username %></b>
+      </td>
+      <td>
+        <%= f.text_field :name %>
+      </td>
+      <td>
+        <%= f.password_field :password %>
+      </td>
+      <td>
+        <%= f.password_field :password_confirmation %>
+      </td>
+      <td>
+        <%= f.check_box :admin %>
+      </td>
+      <td>
+        <%= f.submit class:"btn btn-success" %>
+      </td>
+        <% end %>
+      <td>
+        <% if not user == current_user %>
+        <%= link_to 'Deactivate User', user_path(user), method: :delete, data: { confirm: 'Are you sure you want to deactivate '+user.name+'?'}, class:"btn btn-danger" %>
+        <% end %>
+      </td>
+    </tr>
+
+    <% end %>
+    <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this chore from being saved:</h2>
+
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <tr>
+      <td>
+        <b>NEW USER</b>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.text_field :username %>
+      </td>
+      <td>
+        <%= f.text_field :name %>
+      </td>
+      <td>
+        <%= f.password_field :password %>
+      </td>
+      <td>
+        <%= f.password_field :password_confirmation %>
+      </td>
+      <td>
+        <%= f.check_box :admin %>
+      </td>
+      <td>
+        <%= f.submit class:"btn btn-success" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Deactivated users list</h2>
+<table class="table table-hover">
+  <thead>
+    <th>
+      Username
+    </th>
+    <th>
+      Name
+    </th>
+    <th>
+      Activate!
+    </th>
+  </thead>
+  <tbody>
+    <% @dusers.each do |user| %>
+    <tr>
+      <td>
+        <%= user.username %>
+      </td>
+      <td>
+        <%= user.name %>
+      </td>
+      <td>
+        <%= link_to 'Activate', 'activateuser/'+user.id.to_s, method: :post, class:"btn btn-primary" %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
