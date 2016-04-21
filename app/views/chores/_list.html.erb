@@ -15,9 +15,6 @@
       <td>
         <%= chore.priority %>
       </td>
-      <td><%= link_to 'Show', chore,class:"btn btn-primary" %></td>
-      <td><%= link_to 'Edit', edit_chore_path(chore),class:"btn btn-primary" %></td>
-      <td><%= link_to 'Destroy', chore, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %></td>
       <% if not current_user.chores.include? chore %>
       <td><%= link_to 'Add to frontpage', addchore_path(chore), method: :post, class:"btn btn-primary" %></td>
       <% else %>
