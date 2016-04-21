@@ -4,7 +4,7 @@
 <%= f.text_field :title %>
 <%= f.text_area :description %>
 <%= f.select :todo_category_id, options_from_collection_for_select(@categories, :id, :to_s) %>
-<%= f.datetime_select :due, {:include_blank => true, :default => nil} %>
+<%= f.datetime_select :due, default: DateTime.now+3.days, min: Time.now, start_year:Date.today.year %>
 <%= f.check_box :private %>
 <%= f.submit :class => 'btn btn-success' %>
 

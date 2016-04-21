@@ -1,0 +1,18 @@
+<%= bootstrap_form_for(@todo_category) do |f| %>
+<% if @todo_category.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@todo_category.errors.count, "error") %>
+    prohibited this purchase category from being saved:</h2>
+
+  <ul>
+    <% @todo_category.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= f.text_field :name %>
+<%= f.submit :class => 'btn btn-success' %>
+
+<% end %>

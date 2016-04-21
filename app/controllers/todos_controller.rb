@@ -24,7 +24,8 @@ def create
     if @todo.private
       redirect_to user_path(current_user), notice: 'New private TODO created'
     else
-      redirect_to todos_path, notice: 'New todo created'
+      TelegramApi.send_to_channel current_user.to_s+" created a new todo titled '"+@todo.title+"'. Description: "+@todo.description+"."
+      redirect_to todos_path, notice: 'New TODO created'
     end
   else
     redirect_to :back, alert: 'Error, try again.'

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :users
   resources :xps, only: [:index]
   resources :todos, only: [:new, :show, :index, :create, :update, :destroy]
+  resources :todo_categories, only: [:new,:edit,:create,:update]
   resources :refunds, only: [:new,:index,:create]
   resource :session, only: [:new, :create, :destroy]
 
