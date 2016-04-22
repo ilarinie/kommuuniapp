@@ -10,9 +10,10 @@ end
 
 
 
+
 ruby '2.3.0'
 
-gem 'coveralls', require: false
+gem 'coveralls'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
