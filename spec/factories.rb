@@ -16,11 +16,6 @@ FactoryGirl.define do
     description "test"
   end
 
-  factory :chore do
-    name "testchore"
-    priority 1
-    reward 1
-  end
 
   factory :xp do
     points 10
