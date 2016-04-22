@@ -11,5 +11,5 @@ rvm:
   - 2.3.0
   
 after_success:
-  - coveralls
+  - coveralls report
 
