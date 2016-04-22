@@ -2,9 +2,12 @@ source 'https://rubygems.org'
 
 gem 'telegram-bot-ruby'
 
-group :development, :test do
-gem 'rspec-rails', '~> 3.0'
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'launchy'
 end
+
 
 
 ruby '2.3.0'
@@ -66,4 +69,5 @@ group :development do
   gem 'spring'
 
   gem 'rails_layout'
+  gem 'rspec-rails', '~> 3.0'
 end
