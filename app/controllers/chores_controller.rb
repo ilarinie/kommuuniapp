@@ -101,7 +101,7 @@ class ChoresController < ApplicationController
 
 
   def sort_users_by_task_count
-    @users = User.all
+    @users = User.active
     maarat = {}
     @users.each do |user|
       maarat[user.id] = Task.where(user_id:user.id, chore_id:@chore.id).count

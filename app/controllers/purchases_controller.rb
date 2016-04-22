@@ -15,8 +15,8 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase = Purchase.new(purchase_params)
-    if not @purchase.purchase_category_id==1 && @purchase.save
-      current_user.purchases << @purchase
+    @purchase.user = current_user
+    if @purchase.save
       TelegramApi.send_to_channel ""+current_user.to_s+ " has just bought "+@purchase.description+". Cost: "+@purchase.price.to_s+" €. Category: "+@purchase.purchase_category.to_s+""
       redirect_to :root, notice: 'Purchase saved'
     else

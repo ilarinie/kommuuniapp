@@ -6,9 +6,10 @@ class TelegramApi
 
 
   def self.send_to_channel message
-
+    if not ENV["TELEGRAM_BOT_TOKEN"].nil? && ENV["TELEGRAM_CHANNEL_ID"].nil?
     Telegram::Bot::Client.run(@token) do |bot|
       bot.api.send_message(chat_id: @channel_id, text: message)
     end
+  end
 end
 end

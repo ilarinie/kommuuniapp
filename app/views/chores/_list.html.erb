@@ -3,6 +3,7 @@
     <tr>
       <th>Name</th>
       <th>Priority</th>
+      <th>Reward points</th>
     </tr>
   </thead>
 
@@ -14,6 +15,9 @@
       </td>
       <td>
         <%= chore.priority %>
+      </td>
+      <td>
+        <%= chore.reward %>
       </td>
       <% if not current_user.chores.include? chore %>
       <td><%= link_to 'Add to frontpage', addchore_path(chore), method: :post, class:"btn btn-primary" %></td>
