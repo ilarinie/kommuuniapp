@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   has_many :xps, dependent: :destroy
   has_many :todo_users
   has_many :todos, through: :todo_users
+  
+  validates :username, uniqueness: true, length: { minimum: 3 }
+  validates_format_of :password, with: /(?=.*[A-Z])(?=.{4,}).+/, on :update
+  validates :name, length: {minimum: 3}
 
   scope :active, -> { where deactivated:[nil,false]}
   scope :deactivated, -> { where deactivated:true }
