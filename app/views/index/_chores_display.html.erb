@@ -34,8 +34,7 @@
       </td>
     <% else %>
       <td class="td-ontime">
-        <b><%= distance_of_time_in_words(chore.tasks.last.created_at + chore.priority.hours, Time.now, false) %>
-        </b>
+        <%= distance_of_time_in_words(chore.tasks.last.created_at + chore.priority.hours, Time.now, false) %>
       </td>
       <% end %>
     <% else %>
