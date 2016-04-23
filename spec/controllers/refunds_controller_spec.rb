@@ -24,6 +24,7 @@ RSpec.describe RefundsController, type: :controller do
     it 'creates appropriate purchases' do
       request.env["HTTP_REFERER"] = root_url
       FactoryGirl.create(:user)
+      FactoryGirl.create(:user)
       session[:user_id] = 1
       refund = FactoryGirl.create(:refund, payer_id:2, receiver_id:1)
       expect do

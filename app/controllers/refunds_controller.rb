@@ -56,7 +56,8 @@ class RefundsController < ApplicationController
     "Refund from "+User.find(refund.payer_id).to_s+" to "+User.find(refund.receiver_id).to_s+" amount: "+refund.amount.to_s
   end
 
-  private
+private
+
   def refund_params
       params.require(:refund).permit(:amount, :receiver_id,:confirmed)
   end
