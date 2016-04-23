@@ -1,21 +1,30 @@
+require 'faker'
 FactoryGirl.define do
+
   factory :user do
     name "Testaaja"
-    username "testaaja"
+    username { Faker::Internet.user_name}
     password "12345678"
     password_confirmation "12345678"
   end
 
-
   factory :purchase do
+    description "testpurchase"
     price 10
-    description "test"
   end
 
-  factory :purchase2 do
-    price 20
-    description "test"
+  factory :purchase_category do
+    name "purchase_category_test"
   end
+
+  factory :todo do
+    title "testtodo"
+    description "desc"
+    due {DateTime.now+3.days}
+
+    end
+
+
 
 
   factory :xp do

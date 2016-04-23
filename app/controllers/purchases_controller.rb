@@ -4,7 +4,6 @@ class PurchasesController < ApplicationController
   def new
     @purchase = Purchase.new
     @categories = PurchaseCategory.all.where.not(id:1)
-
   end
 
   def index
