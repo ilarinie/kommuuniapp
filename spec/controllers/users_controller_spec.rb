@@ -51,7 +51,13 @@ end
   it 'should be able to edit information' do
     u = FactoryGirl.create(:user, admin:true)
     session[:user_id] = u.id
-    put :update, id:u.id, user: FactoryGirl.attributes_for(:chore, name:"test2")
+    put :update, id:u.id, user: FactoryGirl.attributes_for(:user, name:"test2")
+    expect(User.find(u.id).name).to eq("test2")
+  end
+  it 'should be able to edit own information if not admin ' do
+    u = FactoryGirl.create(:user)
+    session[:user_id] = u.id
+    put :update, id:u.id, user: FactoryGirl.attributes_for(:user, name:"test2")
     expect(User.find(u.id).name).to eq("test2")
   end
 

@@ -19,10 +19,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def new
-    @user = User.new
-  end
-
   def edit
   end
 
@@ -80,7 +76,7 @@ class UsersController < ApplicationController
     if current_user.admin?
       params.require(:user).permit(:name, :password, :password_confirmation, :admin)
     else
-      params_require(:user).permit(:name, :password, :password_confirmation)
+      params.require(:user).permit(:name, :password, :password_confirmation)
     end
   end
 
