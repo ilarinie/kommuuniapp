@@ -104,6 +104,23 @@ RSpec.describe ChoresController, type: :controller do
       expect(controller.sort_users_by_task_count.first).to eq([2, 1])
     end
   end
+  describe "DELETE #delete" do
+    it 'should delete owned chore' do
+      FactoryGirl.create(:user)
+      session[:user_id] = 1
+      chore = FactoryGirl.create(:chore,private:true, creator_id:1)
+      delete :destroy, id:chore.id
+      expect(Chore.count).to eq(0)
+    end
+    it 'should delete anyones public chore' do
+      FactoryGirl.create(:user)
+      session[:user_id] = 1
+      chore = FactoryGirl.create(:chore,private:false, creator_id:2)
+      delete :destroy, id:chore.id
+      expect(Chore.count).to eq(0)
+    end
+
+  end
 
 
 end

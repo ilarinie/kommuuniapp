@@ -60,11 +60,11 @@ class ChoresController < ApplicationController
   # DELETE /chores/1
   # DELETE /chores/1.json
   def destroy
-    @chore.destroy
-    respond_to do |format|
-      format.html { redirect_to chores_url, notice: 'Chore was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      @chore.destroy
+      respond_to do |format|
+        format.html { redirect_to chores_url, notice: 'Chore was successfully destroyed.' }
+        format.json { head :no_content }
+      end
   end
 
   # POST /publishchore
@@ -75,8 +75,6 @@ class ChoresController < ApplicationController
       @chore.private = false
       if @chore.save
         redirect_to chores_path, notice: 'Chore made visible to everyone'
-      else
-        redirect_to chores_path, notice: 'Error publishing chore'
       end
     else
       redirect_to :root, notice: 'Not your chore'
