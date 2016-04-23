@@ -24,6 +24,9 @@ FactoryGirl.define do
 
     end
 
+  factory :refund do
+    amount 10
+  end
 
 
 
