@@ -72,6 +72,38 @@ RSpec.describe ChoresController, type: :controller do
       expect(Chore.first.private).to eq(true)
     end
   end
+  describe "GET #show" do
+    it 'should render view if public chore' do
+      FactoryGirl.create(:user)
+      session[:user_id] = 1
+      chore = FactoryGirl.create(:chore)
+      get :show, id:chore.id
+      expect(response).to render_template(:show)
+    end
+    it 'should render view if owned private chore' do
+      FactoryGirl.create(:user)
+      session[:user_id] = 1
+      chore = FactoryGirl.create(:chore,private:true, creator_id:1)
+      get :show, id:chore.id
+      expect(response).to render_template(:show)
+    end
+    it 'should not render view if not owned private chore' do
+      FactoryGirl.create(:user)
+      session[:user_id] = 1
+      chore = FactoryGirl.create(:chore,private:true, creator_id:2)
+      get :show, id:chore.id
+      expect(response).to redirect_to(:root)
+    end
+    it 'should order users accordingly' do
+      u1 = FactoryGirl.create(:user)
+      u2 = FactoryGirl.create(:user, username:"test2")
+      session[:user_id] = 2
+      chore = FactoryGirl.create(:chore)
+      post :complete, format:chore.id
+      get :show, id:chore.id
+      expect(controller.sort_users_by_task_count.first).to eq([2, 1])
+    end
+  end
 
 
 end

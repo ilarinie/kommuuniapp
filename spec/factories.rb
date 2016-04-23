@@ -6,6 +6,7 @@ FactoryGirl.define do
     password_confirmation "12345678"
   end
 
+
   factory :purchase do
     price 10
     description "test"
