@@ -60,6 +60,12 @@ end
     put :update, id:u.id, user: FactoryGirl.attributes_for(:user, name:"test2")
     expect(User.find(u.id).name).to eq("test2")
   end
+  it 'should not able to edit own information if not admin if info not valid' do
+    u = FactoryGirl.create(:user)
+    session[:user_id] = u.id
+    put :update, id:u.id, user: FactoryGirl.attributes_for(:user, name:"a")
+    expect(User.find(u.id).name).to eq("Testaaja")
+  end
 
 end
 end
