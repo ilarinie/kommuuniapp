@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.update(deactivated: true)
+    if @user.update(deactivated:true)
       redirect_to :back, notice: 'User deactivated successfully.'
     else
       redirect_to :back, alert: 'Error destroying user.'

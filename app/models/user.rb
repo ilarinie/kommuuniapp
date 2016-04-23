@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
   has_many :todos, through: :todo_users
 
   validates :username, uniqueness: true, length: { minimum: 3 }
-  validates :password, length: {minimum: 8}
   validates :name, length: {minimum: 3}
 
   scope :active, -> { where deactivated:[nil,false]}

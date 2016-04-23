@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   post 'cancelrefund', to: 'refunds#cancel'
 
   #user reactivation
-  post 'activateuser/:id', to: 'users#activate'
+  post 'manage/activateuser/:id', to: 'users#activate'
   get 'manage/users', to: 'users#manage'
 
 
