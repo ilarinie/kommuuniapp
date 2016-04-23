@@ -73,14 +73,15 @@ class ChoresController < ApplicationController
     @chore = Chore.find(params["format"])
     if current_user.id == @chore.creator_id
       @chore.private = false
+      if @chore.save
+        redirect_to chores_path, notice: 'Chore made visible to everyone'
+      else
+        redirect_to chores_path, notice: 'Error publishing chore'
+      end
     else
       redirect_to :root, notice: 'Not your chore'
     end
-    if @chore.save
-      redirect_to chores_path, notice: 'Chore made visible to everyone'
-    else
-      redirect_to chores_path, notice: 'Error publishing chore'
-    end
+
   end
 
   def complete
