@@ -13,7 +13,7 @@ class RefundsController < ApplicationController
     if @refund.save
       redirect_to :root, notice: 'Refund registered, waiting for confirmation'
     else
-      redirect_to :root, alert: 'Error creating refund, try again'
+      render :new
     end
   end
 

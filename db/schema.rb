@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420181322) do
+ActiveRecord::Schema.define(version: 20160424081843) do
 
   create_table "chore_users", force: :cascade do |t|
     t.integer  "user_id"
@@ -24,10 +24,11 @@ ActiveRecord::Schema.define(version: 20160420181322) do
     t.string   "name"
     t.integer  "priority"
     t.integer  "reward"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "creator_id"
     t.boolean  "private"
+    t.string   "completion_text"
   end
 
   create_table "purchase_categories", force: :cascade do |t|
@@ -113,6 +114,7 @@ ActiveRecord::Schema.define(version: 20160420181322) do
     t.string   "password_digest"
     t.boolean  "admin"
     t.boolean  "deactivated"
+    t.string   "picture"
   end
 
   create_table "xps", force: :cascade do |t|

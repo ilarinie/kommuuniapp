@@ -88,7 +88,11 @@ class ChoresController < ApplicationController
     task.chore = Chore.find(params["format"])
     if task.save
       if not task.chore.private
+        if task.chore.completion_text.nil?
         TelegramApi.send_to_channel ""+task.user.to_s+" has just finished "+task.chore.to_s+""
+        else
+          TelegramApi.send_to_channel ""+task.user.to_s+" "+task.chore.completion_text
+        end
       xp = Xp.create source:"Chore: "+task.chore.name, points:task.chore.reward
       current_user.xps << xp
     end
@@ -116,6 +120,6 @@ class ChoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chore_params
-      params.require(:chore).permit(:name, :priority, :reward, :private)
+      params.require(:chore).permit(:name, :priority, :reward, :private, :completion_text)
     end
 end
