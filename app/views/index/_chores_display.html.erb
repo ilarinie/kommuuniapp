@@ -22,7 +22,12 @@
       <% if not chore.tasks.empty? %>
       <td class="hidden-xs"><%= Time.at(chore.tasks.last.created_at) %></td>
       <td><%= chore.tasks.last.user%></td>
-      <% if Time.at(chore.tasks.last.created_at)+chore.priority.hours < Time.now %>
+          <% if Time.now+5.minutes > Time.at(chore.tasks.last.created_at) %>
+    <td class="td-justdone hidden-xs">
+      Just done
+    </td>
+    <td class="btn-justdone">
+      <% elseif Time.at(chore.tasks.last.created_at)+chore.priority.hours < Time.now %>
       <td class="td-late hidden-xs">
         Late! Do it now
       </td>
@@ -32,11 +37,7 @@
         You should be doing it now
       </td>
       <td class="btn-late">
-    <% elseif Time.now+5.minutes > Time.at(chore.tasks.last.created_at) %>
-    <td class="td-justdone hidden-xs">
-      Just done
-    </td>
-    <td class="btn-justdone">
+
     <% else %>
       <td class="td-ontime hidden-xs">
         <%= distance_of_time_in_words(chore.tasks.last.created_at + chore.priority.hours, Time.now, false,:highest_measure_only => true) %>
