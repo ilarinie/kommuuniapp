@@ -15,6 +15,7 @@ end
 def index
   @todos = Todo.where(private:false).where(todo_solution_id:nil).paginate(page: params[:page]).order(:due)
   @solvedtodos = Todo.where(private:false).where.not(todo_solution_id:nil).paginate(page: params[:page]).order(:due)
+  @categories = TodoCategory.all
 end
 
 def create

@@ -1,0 +1,15 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+  Select Category
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li>
+      <%= link_to 'Show all', purchases_path %>
+    </li>
+    <% categories.each do |cat| %>
+    <li>
+      <%= link_to cat, todo_category_path(cat) %>
+    </li>
+    <%end%>
+  </ul>
+</div>

@@ -1,8 +1,14 @@
 class TodoCategoriesController < ApplicationController
-  before_action :set_todo_category, only: [:edit]
+  before_action :set_todo_category, only: [:edit, :show]
 
 def new
   @todo_category = TodoCategory.new
+end
+
+def show
+  @todos = Todo.where(private:false).where(todo_category_id:@todo_category.id).where(todo_solution_id:nil).paginate(:page => params[:page]).order(created_at: :desc)
+  @comp_todos = Todo.where(todo_category_id:@todo_category.id).where.not(todo_solution_id:nil).paginate(:page => params[:comppage]).order(created_at: :desc)
+  @categories = TodoCategory.all
 end
 
 def edit

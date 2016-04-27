@@ -1,0 +1,22 @@
+<h1>TODOS - <%= @todo_category %></h1>
+
+<table class="table">
+  <tr>
+    <td>
+      <%= render 'todo_categories/category_menu', categories: @categories %>
+    </td>
+    <td>
+        <%= will_paginate @todos, renderer: BootstrapPagination::Rails %>
+    </td>
+  </tr>
+</table>
+
+
+<h2><%= @todo_category %> - Unsolved</h2>
+<%= render 'todos/list', todos: @todos %>
+
+<h2><%= @todo_category %> - Solved</h2>
+
+<%= render 'todos/completed_list', todos: @comp_todos %>
+
+<%= will_paginate @comp_todos, renderer: BootstrapPagination::Rails %>

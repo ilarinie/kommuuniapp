@@ -1,20 +1,20 @@
+<h1><%= @category.name %></h1><br/>
+
+<table class="table">
+  <tr>
+    <td>
+      <%= render 'category_menu', categories: @categories%>
+    </td>
+    <td>
+        <%= will_paginate @purchases, renderer: BootstrapPagination::Rails %>
+    </td>
+  </tr>
+</table>
 
 
-<h1><%= @category.name %></h1>
 
-<p>
-<%= label_tag 'Select gategory to show:' %>
-<%= select_tag(:menu_select, options_from_collection_for_select(@categories, :id, :to_s, params[:id])) %>
-<%= link_to 'Show all', purchases_path %>
-<p>
-<script type="text/javascript">
-  $('#menu_select').bind('change', function() {
-    window.location.pathname = "purchase_categories/"+$(this).val()
-   });
-</script>
 
-<%= will_paginate @purchases, renderer: BootstrapPagination::Rails %>
-
+</div>
 <table class="table table-hover">
   <thead>
     <tr>

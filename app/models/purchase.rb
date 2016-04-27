@@ -6,4 +6,10 @@ class Purchase < ActiveRecord::Base
   validates :description, length: {in: 3..100 }
 
   self.per_page = 10
+
+  def self.search(search, page)
+  paginate :per_page => 5, :page => page,
+           :conditions => ['description like ?', "%#{search}%"], :order => 'description'
+           
+  end
 end

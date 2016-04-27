@@ -22,9 +22,15 @@
       <td>
         <%= user.purchase_sum %>
       </td>
-      <td>
-        <%= '%.2f' % (average_purchase - user.purchase_sum) %>
+        <% if (average_purchase - user.purchase_sum) > 0 %>
+        <td class="td-late">
+          TO PAY <%= '%.2f' % (average_purchase - user.purchase_sum) %>
+        </td>
+        <% else %>
+        <td class="td-ontime">
+        TO RECEIVE <%= '%.2f' % ((average_purchase - user.purchase_sum)*-1) %>
       </td>
+        <% end %>
     </tr>
     <% end %>
   </tbody>

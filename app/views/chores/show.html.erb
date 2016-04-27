@@ -3,6 +3,9 @@
 <div class="row">
   <div class="col-md-5 col-centered">
     <h2><%= @chore.name %></h2>
+    <p>
+      Created by: <%= User.find(@chore.creator_id) %>
+    </p>
 
     <h3>Statistics</h3>
     <table class="table">

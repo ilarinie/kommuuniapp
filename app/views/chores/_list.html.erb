@@ -19,6 +19,9 @@
       <td>
         <%= chore.reward %>
       </td>
+      <td>
+        <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
+      </td>
       <% if not current_user.chores.include? chore %>
       <td><%= link_to 'Add to frontpage', addchore_path(chore), method: :post, class:"btn btn-primary" %></td>
       <% else %>

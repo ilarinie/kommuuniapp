@@ -2,6 +2,17 @@
 
 <h2>Unsolved</h2>
 
+<table class="table">
+  <tr>
+    <td>
+      <%= render 'todo_categories/category_menu', categories: @categories %>
+    </td>
+    <td>
+        <%= will_paginate @todos, renderer: BootstrapPagination::Rails %>
+    </td>
+  </tr>
+</table>
+
 <%= render 'list', todos: @todos %>
 
 <h2>Solved</h2>

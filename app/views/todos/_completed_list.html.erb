@@ -12,6 +12,9 @@
     <th>
       Solved by
     </th>
+    <th>
+      Category
+    </th>
   </thead>
   <tbody>
     <% todos.each do |todo| %>
@@ -27,6 +30,9 @@
       </td>
       <td>
         <%= User.find(todo.todo_solution.user_id).to_s %>
+      </td>
+      <td>
+          <%= link_to todo.todo_category, todo_category_path(todo.todo_category) %>
       </td>
     </tr>
     <% end %>

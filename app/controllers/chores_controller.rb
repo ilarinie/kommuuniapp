@@ -25,6 +25,9 @@ class ChoresController < ApplicationController
 
   # GET /chores/1/edit
   def edit
+    if @chore.private && current_user.id != @chore.creator_id
+        redirect_to :root, notice: 'That chore is private'
+    end
   end
 
   # POST /chores

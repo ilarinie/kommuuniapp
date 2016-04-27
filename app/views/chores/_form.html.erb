@@ -14,6 +14,16 @@
     <%= f.text_field :name %>
     <%= f.number_field :priority %>
     <%= f.number_field :reward %>
+    <p>
+      (Optional) add a completion text that gets send to the Telegram channel (if set).
+      Format: "username" "text of your choosing"
+    </p>
+    <%= f.text_field :completion_text %>
+    <% if @chore.new_record? %>
+    <%= f.check_box :private %>
+    <% elsif current_user.id == @chore.creator_id %>
+    <%= f.check_box :private %>
+    <% end %>
     <%= f.submit :class => 'btn btn-success'  %>
 
 <% end %>
