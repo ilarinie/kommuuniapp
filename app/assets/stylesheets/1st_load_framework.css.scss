@@ -82,6 +82,10 @@ main {
     background-color: green;
   }
 }
+.btn-justdone {
+  .btn {
+    disabled: true;
+}
 .footer {
   position: absolute;
   bottom: 0;
