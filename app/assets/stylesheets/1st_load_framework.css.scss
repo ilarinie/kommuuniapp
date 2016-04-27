@@ -72,6 +72,11 @@ main {
 .chore-private {
   color: red;
 }
+.btn-late {
+  .btn {
+    background-color: red;
+  }
+}
 .footer {
   position: absolute;
   bottom: 0;
