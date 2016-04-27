@@ -22,7 +22,7 @@
       <% if not chore.tasks.empty? %>
       <td class="hidden-xs"><%= Time.at(chore.tasks.last.created_at) %></td>
       <td><%= chore.tasks.last.user%></td>
-          <% if Time.now+5.minutes > Time.at(chore.tasks.last.created_at) %>
+          <% if Time.now+5.minutes > chore.tasks.last.created_at %>
     <td class="td-justdone hidden-xs">
       Just done
     </td>
