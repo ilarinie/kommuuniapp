@@ -27,7 +27,7 @@
       Just done
     </td>
     <td class="btn-justdone">
-      <% elseif Time.at(chore.tasks.last.created_at)+chore.priority.hours < Time.now %>
+      <% elsif Time.at(chore.tasks.last.created_at)+chore.priority.hours < Time.now %>
       <td class="td-late hidden-xs">
         Late! Do it now
       </td>
