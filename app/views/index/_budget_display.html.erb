@@ -20,7 +20,7 @@
         <%= user.name %>
       </td>
       <td>
-        <%= user.purchase_sum %>
+        <%= number_with_precision user.purchase_sum, :precision => 2 %>
       </td>
         <% if (average_purchase - user.purchase_sum) > 0 %>
         <td class="td-late">
