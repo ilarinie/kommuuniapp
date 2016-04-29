@@ -29,12 +29,14 @@ class ChoresController < ApplicationController
     if @chore.private && current_user.id != @chore.creator_id
         redirect_to :root, notice: 'That chore is private'
     end
+     @priorities = ['hours', 'days', 'weeks']
   end
 
   # POST /chores
   # POST /chores.json
   def create
     @chore = Chore.new(chore_params)
+    @chore.priority = Chore.prioritycalc(params[:priorities])
     @chore.creator_id = current_user.id
     respond_to do |format|
       if @chore.save
@@ -124,6 +126,6 @@ class ChoresController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chore_params
-      params.require(:chore).permit(:name, :priority, :reward, :private, :completion_text)
+      params.require(:chore).permit(:name, :priority, :reward, :private, :completion_text, :priorities)
     end
 end
