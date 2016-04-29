@@ -11,7 +11,7 @@ class Chore < ActiveRecord::Base
     self.name
   end
   
-  def prioritycalc multiplier hours
+  def self.prioritycalc multiplier hours
     case multiplier
     when 'hours'
       hours
