@@ -19,7 +19,6 @@ class Chore < ActiveRecord::Base
       self.priority = self.priority*24
     when 'weeks'
       self.priority = self.priority*24*7
-    else
-      
     end
+  end
 end
