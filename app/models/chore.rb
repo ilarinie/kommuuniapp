@@ -11,13 +11,13 @@ class Chore < ActiveRecord::Base
     self.name
   end
   
-  def self.prioritycalc multiplier hours
+  def prioritycalc multiplier
     case multiplier
     when 'hours'
-      hours
+      self.priority = self.priority
     when 'days'
-      hours*24
+      self.priority = self.priority*24
     when 'weeks'
-      hours*24*7
+      self.priority = self.priority*24*7
     end
 end
