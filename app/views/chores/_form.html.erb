@@ -13,7 +13,7 @@
 
     <%= f.text_field :name %>
     <%= f.number_field :priority %>
-    <%= f.select :priorities, @priorities, :class => "select inline",label => nil %>
+    <%= f.select :priorities, @priorities, :class => "select inline", :label => nil %>
     <%= f.number_field :reward %>
     <p>
       (Optional) add a completion text that gets send to the Telegram channel (if set).
