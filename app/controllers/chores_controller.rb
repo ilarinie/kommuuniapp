@@ -36,7 +36,7 @@ class ChoresController < ApplicationController
   # POST /chores.json
   def create
     @chore = Chore.new(chore_params)
-    @chore.priority = Chore.prioritycalc(params[:priorities], @chore.priority)
+    @chore.prioritycalc(params[:priorities])
     @chore.creator_id = current_user.id
     respond_to do |format|
       if @chore.save
