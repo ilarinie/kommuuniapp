@@ -22,14 +22,20 @@ class Chore < ActiveRecord::Base
     end
   end
 
-  def priority_to_s
-    if self.priority < 24
-      "#{self.priority} hours"
-    elsif self.priority < 168
-    '%.1f' % (self.priority/24.0) +" days"
-    else
-    '%.2f' % (self.priority/168) +" weeks"
+  def add_to_every_user
+    User.active.each do |user|
+      ChoreUser.create(user_id:user.id, chore_id:self.id)
     end
+  end
+
+  def weekly_average_task_count
+   weeks = ((Time.now - self.created_at) / 1.week.seconds)
+   weeks = 1 if weeks < 1
+    if not self.tasks.empty?
+  '%.2f' % (self.tasks.count / weeks )
+  else
+  0
+  end
   end
 
 end

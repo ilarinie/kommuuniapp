@@ -40,6 +40,7 @@ class ChoresController < ApplicationController
     @chore.creator_id = current_user.id
     respond_to do |format|
       if @chore.save
+        @chore.add_to_every_user if not @chore.private?
         format.html { redirect_to @chore, notice: 'Chore was successfully created.' }
         format.json { render :show, status: :created, location: @chore }
       else
@@ -102,7 +103,7 @@ class ChoresController < ApplicationController
       xp = Xp.create source:"Chore: "+task.chore.name, points:task.chore.reward
       current_user.xps << xp
     end
-      redirect_to :root, notice: 'Nicely done'
+      redirect_to :back, notice: 'Nicely done'
     else
       redirect_to :root, notice: 'Something went wrong, try again'
     end

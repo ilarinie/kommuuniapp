@@ -6,6 +6,7 @@ before_action :ensure_that_signed_in
 def show
   @purchases = @category.purchases.paginate(:page => params[:page]).order(created_at: :desc)
   @categories = PurchaseCategory.all
+  @users = User.active
 end
 
 def new

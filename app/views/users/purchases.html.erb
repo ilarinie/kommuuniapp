@@ -1,0 +1,5 @@
+<h1><%= @user.to_s %>'s purchases</h1>
+
+<%= render 'purchases/selection_menu', categories:@categories, users: @users %>
+
+<%= render 'purchases/list', purchases: @purchases %>

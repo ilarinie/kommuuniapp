@@ -56,6 +56,20 @@
         <%= link_to 'My page', user_path(current_user) %>
       </li>
       <li>
+        <%= link_to 'My todos', usertodos_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to 'My chores', userchores_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to 'My purchases', userpurchases_path(current_user) %>
+      </li>
+      <li>
+        <%= link_to 'My refunds', userrefunds_path(current_user) %>
+      </li>
+      <li role="separator" class="divider"></li>
+      <li class="dropdown-header">Edit</li>
+      <li>
         <%= link_to 'Edit information', edit_user_path(current_user) %>
       </li>
       <% if current_user.admin? %>

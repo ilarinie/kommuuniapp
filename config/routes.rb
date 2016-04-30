@@ -34,7 +34,12 @@ Rails.application.routes.draw do
   post 'manage/activateuser/:id', to: 'users#activate'
   get 'manage/users', to: 'users#manage'
 
-
+  #user pages
+  get 'users/:id/chores', to: 'users#chores', as: 'userchores'
+  get 'users/:id/todos', to: 'users#todos', as: 'usertodos'
+  get 'users/:id/purchases', to: 'users#purchases', as: 'userpurchases'
+  get 'users/:id/refunds', to: 'users#refunds', as: 'userrefunds'
+  
   root 'index#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

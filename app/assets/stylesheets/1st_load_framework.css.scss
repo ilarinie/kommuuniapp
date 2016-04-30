@@ -42,11 +42,11 @@ body {
   margin-top: 50px;
   margin-bottom: 60px;
   /* Required margin for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-  background-color: #FFF;
+  background-color: #EEEEEE;
 }
 @media (max-width: $screen-xs) {
   body {
-    
+
   }
 }
 @media (max-width: $screen-sm) {
@@ -82,18 +82,18 @@ main {
     background-color: green;
   }
 }
-.btn-justdone {
-  .btn {
-    disabled: true;
-  }
+.div-inline{
+    display:inline-block;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
-  background-color: #f5f5f5;
+  background-color:  rgb(171,14,9);
+
 }
 .container .text-muted {
   margin: 20px 0;

@@ -1,17 +1,47 @@
-<p id="notice"><%= notice %></p>
-
 <div class="row">
   <div class="col-md-5 col-centered">
     <h2><%= @chore.name %></h2>
     <p>
-      Created by: <%= User.find(@chore.creator_id) %>
+      Created by:
+      <%= User.find(@chore.creator_id) %>
     </p>
 
+    <%= link_to 'Complete', completechore_path(@chore), class:"btn btn-primary", method: :post%>
+
+    <h3>Details</h3>
+    <ul>
+      <% if not @chore.reward.nil? %>
+      <li>
+        Rewards
+        <%= @chore.reward %>
+        points
+      </li>
+      <% end %>
+      <% if not @chore.priority.nil? %>
+      <li>
+        Should be done every
+        <%= distance_of_time_in_words(@chore.priority.hours) %>
+      </li>
+      <% end %>
+      <li>
+        Has been done a total of
+        <%= @chore.tasks.count %>
+        times since
+        <%= @chore.created_at %>.
+      </li>
+      <li>
+        Which means - on average -
+        <%= @chore.weekly_average_task_count %>
+        times per week.
+      </li>
+
+    </ul>
+    <% if not @chore.private? %>
     <h3>Statistics</h3>
     <table class="table">
       <thead>
         <th>User</th>
-        <th>Count</th>
+        <th>Has completed it</th>
       </thead>
       <tbody>
         <% @users.each do |user| %>
@@ -20,15 +50,15 @@
             <%= User.find(user.first).to_s %>
           </td>
           <td>
-            <%= user.last %> times
+            <%= user.last %>
+            times
           </td>
         </tr>
         <% end %>
       </tbody>
     </table>
 
-
-
+    <% end %>
 
   </div>
 </div>

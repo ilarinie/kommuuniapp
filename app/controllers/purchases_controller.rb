@@ -9,6 +9,7 @@ class PurchasesController < ApplicationController
   def index
     @purchases = Purchase.paginate(:page => params[:page]).order(created_at: :desc)
     @categories = PurchaseCategory.all
+    @users = User.active
 
   end
 

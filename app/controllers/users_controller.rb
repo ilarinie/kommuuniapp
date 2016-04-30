@@ -1,17 +1,37 @@
 class UsersController < ApplicationController
   before_action :ensure_that_signed_in
   before_action :ensure_that_admin, only: [:manage, :destroy, :create, :activate]
-  before_action :set_user, only: [:show, :destroy, :update, :activate, :edit]
+  before_action :set_user, only: [:show, :destroy, :update, :activate, :edit, :todos, :chores, :purchases]
+  before_action :ensure_that_user, only: [:todos, :chores, :refunds]
   before_action :ensure_update_permission, only: [:update]
 
   def show
-    @refunds = Refund.where(receiver_id: current_user.id).where(confirmed: false)
-    @pendrefunds = Refund.where(payer_id: current_user.id).where(confirmed: false)
+
     if @user == current_user
       @todos = Todo.where(creator_id: @user.id).where(private: true).where(todo_solution_id: nil).paginate(page: params[:page]).order(:due)
       @comptodos = Todo.where(creator_id: @user.id).where(private: true).where.not(todo_solution_id: nil).paginate(page: params[:comppage]).order(:due)
     end
-    end
+  end
+
+  def todos
+    @todos = Todo.where(creator_id: @user.id).where(private: true).where(todo_solution_id: nil).paginate(page: params[:page]).order(:due)
+    @comptodos = Todo.where(creator_id: @user.id).where(private: true).where.not(todo_solution_id: nil).paginate(page: params[:comppage]).order(:due)
+  end
+
+  def chores
+    @chores = Chore.where(private:true).where(creator_id:current_user.id)
+  end
+
+  def purchases
+    @purchases = @user.purchases
+    @categories = PurchaseCategory.all
+    @users = User.active
+  end
+
+  def refunds
+    @refunds = Refund.where(receiver_id: current_user.id).where(confirmed: false)
+    @pendrefunds = Refund.where(payer_id: current_user.id).where(confirmed: false)
+  end
 
   def manage
     @users = User.active
@@ -78,6 +98,10 @@ class UsersController < ApplicationController
     else
       params.require(:user).permit(:name, :password, :password_confirmation)
     end
+  end
+
+  def ensure_that_user
+    current_user == @user
   end
 
   def ensure_update_permission
