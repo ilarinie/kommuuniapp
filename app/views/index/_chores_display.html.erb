@@ -22,44 +22,48 @@
       <% if not chore.tasks.empty? %>
       <td class="hidden-xs"><%= Time.at(chore.tasks.last.created_at) %></td>
       <td><%= chore.tasks.last.user%></td>
-          <% if Time.now < chore.tasks.last.created_at+5.minutes %>
-    <td class="td-justdone hidden-xs">
-      Just done
-    </td>
-    <td class="btn-justdone">
-    <button type="button" class="btn btn-primary" disabled>Done</button>
-    </td>
+      <% if Time.now < chore.tasks.last.created_at+5.minutes %>
+      <td class="td-justdone hidden-xs">
+        Just done
+      </td>
+      <td class="btn-justdone">
+        <button type="button" class="btn btn-primary" disabled>Done</button>
+      </td>
+      <% elsif chore.priority.nil? %>
+      <td class="hidden-xs">
+        No priority set
+      </td>
       <% elsif Time.at(chore.tasks.last.created_at)+chore.priority.hours < Time.now %>
       <td class="td-late hidden-xs">
         Late! Do it now
       </td>
       <td class="btn-late">
-          <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
-    </td>
+        <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
+      </td>
       <% elsif Time.now-((Time.at(chore.tasks.last.created_at)+chore.priority.hours)) > -3600 %>
       <td class="td-late hidden-xs">
         You should be doing it now
       </td>
       <td class="btn-late">
         <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
-    </td>
+      </td>
     <% else %>
       <td class="td-ontime hidden-xs">
         <%= distance_of_time_in_words(chore.tasks.last.created_at + chore.priority.hours, Time.now, false,:highest_measure_only => true) %>
       </td>
       <td class="btn-ontime">
-          <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
-    </td>
+        <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
+      </td>
       <% end %>
     <% else %>
       <td>Nobody</td>
       <td class="hidden-xs">Never</td>
       <td class="hidden-xs">Do it now?</td>
-            <td>
-      <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
-    </tr>
+      <td>
+        <%= link_to 'Complete', completechore_path(chore), class:"btn btn-primary", method: :post%>
+      </tr>
       <% end %>
 
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
