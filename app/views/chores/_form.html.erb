@@ -1,3 +1,6 @@
+<div class="col-md-10">
+
+
 <%= bootstrap_form_for(@chore) do |f| %>
   <% if @chore.errors.any? %>
     <div id="error_explanation">
@@ -12,8 +15,17 @@
   <% end %>
 
     <%= f.text_field :name %>
-    <%= f.number_field :priority %>
-    <%= f.select :priorities, @priorities, :class => "select inline", hide_label: true %>
+    <div class="row">
+      <div class="col-md-5">
+        <%= f.number_field :priority %>
+      </div>
+      <div class="col-md-5">
+          <%= f.label '     '%>
+          <%= f.select :priorities, @priorities, hide_label: true %>
+      </div>
+
+    </div>
+
     <%= f.number_field :reward %>
     <p>
       (Optional) add a completion text that gets send to the Telegram channel (if set).
@@ -28,3 +40,4 @@
     <%= f.submit :class => 'btn btn-success'  %>
 
 <% end %>
+</div>

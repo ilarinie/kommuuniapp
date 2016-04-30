@@ -14,7 +14,7 @@
          <%= link_to chore.name, chore_path(chore) %>
       </td>
       <td>
-        <%= chore.priority %>
+        <%= distance_of_time_in_words(chore.priority.hours) %>
       </td>
       <td>
         <%= chore.reward %>
