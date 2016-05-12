@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :todo_solutions, only: [:create, :destroy]
   resources :users
   resources :xps, only: [:index]
+  resources :tasks, only: [:destroy]
   resources :todos, only: [:new, :show, :index, :create, :update, :destroy]
   resources :todo_categories, only: [:new,:edit,:create,:update, :show]
   resources :refunds, only: [:new,:index,:create]
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
   post 'publishchore', to: 'chores#publish'
 
   # creates a new task for the chore
-  post 'completechore', to: 'chores#complete'
+  post 'completechore/:id', to: 'chores#complete', as: 'completechore'
 
   # refunds
   post 'confirmrefund', to: 'refunds#confirm'
@@ -39,7 +40,9 @@ Rails.application.routes.draw do
   get 'users/:id/todos', to: 'users#todos', as: 'usertodos'
   get 'users/:id/purchases', to: 'users#purchases', as: 'userpurchases'
   get 'users/:id/refunds', to: 'users#refunds', as: 'userrefunds'
-  
+
+
+  get 'feed', to: 'index#index'
   root 'index#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

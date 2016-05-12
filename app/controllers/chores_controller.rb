@@ -1,5 +1,5 @@
 class ChoresController < ApplicationController
-  before_action :set_chore, only: [:show, :edit, :update, :destroy]
+  before_action :set_chore, only: [:show, :edit, :update, :destroy, :complete]
   before_action :ensure_that_signed_in
 
   # GET /chores
@@ -15,7 +15,8 @@ class ChoresController < ApplicationController
     if @chore.private && current_user.id != @chore.creator_id
       redirect_to :root, notice: 'That chore is private'
     end
-    @users = sort_users_by_task_count
+    @users = @chore.sort_users_by_task_count
+    @tasks = Task.where(chore:@chore).limit(10)
   end
 
   # GET /chores/new
@@ -74,35 +75,8 @@ class ChoresController < ApplicationController
       end
   end
 
-  # POST /publishchore
-  # Makes a private chore public
-  def publish
-    @chore = Chore.find(params["format"])
-    if current_user.id == @chore.creator_id
-      @chore.private = false
-      if @chore.save
-        redirect_to chores_path, notice: 'Chore made visible to everyone'
-      end
-    else
-      redirect_to :root, notice: 'Not your chore'
-    end
-
-  end
-
   def complete
-    task = Task.new
-    task.user = current_user
-    task.chore = Chore.find(params["format"])
-    if task.save
-      if not task.chore.private
-        if task.chore.completion_text.nil?
-        TelegramApi.send_to_channel ""+task.user.to_s+" has just finished "+task.chore.to_s+""
-        else
-          TelegramApi.send_to_channel ""+task.user.to_s+" "+task.chore.completion_text
-        end
-      xp = Xp.create source:"Chore: "+task.chore.name, points:task.chore.reward
-      current_user.xps << xp
-    end
+    if @chore.complete current_user
       redirect_to :back, notice: 'Nicely done'
     else
       redirect_to :root, notice: 'Something went wrong, try again'
@@ -110,14 +84,6 @@ class ChoresController < ApplicationController
   end
 
 
-  def sort_users_by_task_count
-    @users = User.active
-    maarat = {}
-    @users.each do |user|
-      maarat[user.id] = Task.where(user_id:user.id, chore_id:@chore.id).count
-    end
-    maarat.sort_by {|k,v| v}.reverse
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

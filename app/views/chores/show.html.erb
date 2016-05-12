@@ -67,5 +67,27 @@
     <%= link_to 'Edit', edit_chore_path(@chore), class:"btn btn-primary"%>
     <%= link_to 'Destroy', @chore, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
     <%= link_to 'Back', chores_path, class:"btn btn-primary" %>
+    <br />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-5 col-centered">
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapse1">Recent completions</a>
+          </h4>
+        </div>
+        <div id="collapse1" class="panel-collapse collapse">
+          <div class="panel-body">
+
+            <%= render 'tasklist', tasks: @tasks %>
+          </div>
+          <div class="panel-footer">Panel Footer</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
