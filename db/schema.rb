@@ -114,7 +114,6 @@ ActiveRecord::Schema.define(version: 20160424081843) do
     t.string   "password_digest"
     t.boolean  "admin"
     t.boolean  "deactivated"
-    t.string   "picture"
   end
 
   create_table "xps", force: :cascade do |t|
