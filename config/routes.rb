@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   get 'users/:id/refunds', to: 'users#refunds', as: 'userrefunds'
 
 
-  get 'feed', to: 'index#index'
+  get 'feed', to: 'index#feed'
   root 'index#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

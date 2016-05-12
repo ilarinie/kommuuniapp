@@ -6,4 +6,12 @@ class IndexController < ApplicationController
     @users = User.active
     @todos = Todo.where("due < ?", Time.now+5.days).where(private:false).where(todo_solution_id:nil).paginate(page: params[:page]).order(:due).limit(5)
   end
+
+  def feed
+    tasks = Task.pub
+    purchases = Purchase.all
+    todosol = TodoSolution.pub
+    @feed = tasks+purchases+todosol
+    @feed.sort! { |a,b| b.created_at <=> a.created_at}
+  end
 end

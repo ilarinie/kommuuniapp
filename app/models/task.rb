@@ -5,11 +5,17 @@ class Task < ActiveRecord::Base
   validates :chore_id, presence: true
   validates :user_id, presence: true
 
-  scope :publicc, -> { where !self.chore.private}
+  scope :pub, ->(){
+    joins(:chore).where('chores.private' => false)
+  }
+
+  def url
+    "chores/"+self.chore_id.to_s
+  end
+
 
 
   self.per_page = 10
-
 
   def to_s
 

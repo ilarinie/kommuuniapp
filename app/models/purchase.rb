@@ -14,6 +14,9 @@ class Purchase < ActiveRecord::Base
 
   def to_s
     sum = '%.2f' % price
-    '' + user + ' bought ' + description + '. Cost: ' + sum
+    '' + user.to_s + ' bought ' + description + '. Cost: ' + sum
+  end
+  def url
+    "purchases"
   end
 end

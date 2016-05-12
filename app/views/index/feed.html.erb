@@ -1,9 +1,30 @@
-<ul>
-  <% @feed.each do |feed| %>
-  <li>
+<div class="col-md-10 col-centered">
 
-    <%= feed %>
-  </li>
+<table class="table">
+  <thead>
+    <tr>
+      <th>
 
-  <% end %>
-</ul>
+      </th>
+      <th>
+        At
+      </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @feed.each do |feed| %>
+
+    <tr>
+      <td>
+        <%= link_to feed, feed.url %>
+      </td>
+      <td>
+        <%= feed.created_at %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>

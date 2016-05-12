@@ -6,6 +6,8 @@ class Chore < ActiveRecord::Base
 
   validates :name, presence: true, length: { in: 2..30 }
 
+  scope :pub, -> { where.not(private:true)}
+
   def to_s
     name
   end
