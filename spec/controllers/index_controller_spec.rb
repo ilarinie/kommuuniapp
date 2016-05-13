@@ -13,6 +13,12 @@ RSpec.describe IndexController, type: :controller do
     get :feed
     expect(response).to render_template(:feed)
   end
+  it 'should render toplist when user logged in' do
+    FactoryGirl.create(:user)
+    session[:user_id] = 1
+    get :toplist
+    expect(response).to render_template(:toplist)
+  end
 
 
 

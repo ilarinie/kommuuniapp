@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   resources :purchase_categories, only: [:show, :new, :create]
   resources :todo_solutions, only: [:create, :destroy]
   resources :users
-  resources :xps, only: [:index]
   resources :tasks, only: [:destroy]
   resources :todos, only: [:new, :show, :index, :create, :update, :destroy]
   resources :todo_categories, only: [:new,:edit,:create,:update, :show]
@@ -43,6 +42,7 @@ Rails.application.routes.draw do
 
 
   get 'feed', to: 'index#feed'
+  get 'toplist', to: 'index#toplist'
   root 'index#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

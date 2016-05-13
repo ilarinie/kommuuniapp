@@ -14,9 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # nollataan sessio
     session[:user_id] = nil
-    # uudelleenohjataan sovellus pääsivulle
     redirect_to signin_path
   end
 end

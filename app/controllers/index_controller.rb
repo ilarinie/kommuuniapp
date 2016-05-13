@@ -14,4 +14,10 @@ class IndexController < ApplicationController
     @feed = tasks+purchases+todosol
     @feed.sort! { |a,b| b.created_at <=> a.created_at}
   end
+
+  def toplist
+    @users = User.active.sort_by{ |u| u.xp_total}.reverse
+    @weeklyusers =  User.active.sort_by{ |u| u.xp_total_range Date.today.beginning_of_week }.reverse
+    @monthlyusers =  User.active.sort_by{ |u| u.xp_total_range Date.today.beginning_of_month }.reverse
+  end
 end

@@ -101,7 +101,7 @@ class UsersController < ApplicationController
   end
 
   def ensure_that_user
-    current_user == @user
+    redirect_to :root, notice: 'Not your list!' if not current_user == @user
   end
 
   def ensure_update_permission

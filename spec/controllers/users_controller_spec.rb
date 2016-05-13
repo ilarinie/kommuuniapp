@@ -68,4 +68,25 @@ end
   end
 
 end
+  describe 'GET #todos, #chores, #purchases' do
+    it 'should render appropriate list if correct user' do
+      u = FactoryGirl.create(:user)
+      session[:user_id] = u.id
+      get :todos, id:u.id
+      expect(response).to render_template(:todos)
+      get :purchases, id:u.id
+      expect(response).to render_template(:purchases)
+      get :chores, id:u.id
+      expect(response).to render_template(:chores)
+    end
+    it 'should not render another users lists' do
+      u = FactoryGirl.create(:user)
+      session[:user_id] = u.id
+      u2 = FactoryGirl.create(:user)
+      get :todos, id:u2.id
+      expect(response).to redirect_to(:root)
+      get :chores, id:u2.id
+      expect(response).to redirect_to(:root)
+    end
+  end
 end
