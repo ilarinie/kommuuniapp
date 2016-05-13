@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe ChoresController, type: :controller do
+  before :each do
+    request.env["HTTP_REFERER"] = root_url
+  end
   describe "GET index" do
     it "renders the index template" do
       FactoryGirl.create(:user)
@@ -52,24 +55,8 @@ RSpec.describe ChoresController, type: :controller do
       FactoryGirl.create(:user)
       session[:user_id] = 1
       chore = FactoryGirl.create(:chore)
-      post :complete, format:chore.id
+      post :complete, id:chore.id
       expect(Task.count).to eq(1)
-    end
-  end
-  describe "POST #publish" do
-    it 'should make the chore public' do
-      FactoryGirl.create(:user)
-      session[:user_id] = 1
-      chore = FactoryGirl.create(:chore, private:true, creator_id:1)
-      post :publish, format:chore.id
-      expect(Chore.first.private).to eq(false)
-    end
-    it 'should not make the chore public if current_user not the creator' do
-      FactoryGirl.create(:user)
-      session[:user_id] = 1
-      chore = FactoryGirl.create(:chore, private:true, creator_id:2)
-      post :publish, format:chore.id
-      expect(Chore.first.private).to eq(true)
     end
   end
   describe "GET #show" do
@@ -99,9 +86,9 @@ RSpec.describe ChoresController, type: :controller do
       u2 = FactoryGirl.create(:user, username:"test2")
       session[:user_id] = 2
       chore = FactoryGirl.create(:chore)
-      post :complete, format:chore.id
+      post :complete, id:chore.id
       get :show, id:chore.id
-      expect(controller.sort_users_by_task_count.first).to eq([2, 1])
+      expect(chore.sort_users_by_task_count.first).to eq([2, 1])
     end
   end
   describe "DELETE #delete" do
