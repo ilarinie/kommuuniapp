@@ -1,4 +1,0 @@
-class TodoUsersController < ApplicationController
-
-
-end
