@@ -9,6 +9,6 @@ wadrod2016 -projekti
 
 [Tuntikirjanpito](https://github.com/ilarinie/kommuuniapp/blob/master/docs/tuntikirjanpito.md)
 
-Heroku - tulossa
+[Heroku - kommuuniapp.herokuapp.com](http://kommuuniapp.herokuapp.com)
 
 
