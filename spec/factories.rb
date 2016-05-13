@@ -19,6 +19,9 @@ FactoryGirl.define do
   factory :todo_category do
     name 'todo_category_test'
   end
+  factory :todo_solution do
+    solution 'solved'
+  end
 
   factory :todo do
     title 'testtodo'

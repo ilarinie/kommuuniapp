@@ -20,9 +20,6 @@ def create
 
 end
 
-def destroy
-  redirect_to :root, alert: 'Not implemented yet'
-end
 
 private
 
