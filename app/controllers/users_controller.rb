@@ -6,11 +6,6 @@ class UsersController < ApplicationController
   before_action :ensure_update_permission, only: [:update]
 
   def show
-
-    if @user == current_user
-      @todos = Todo.where(creator_id: @user.id).where(private: true).where(todo_solution_id: nil).paginate(page: params[:page]).order(:due)
-      @comptodos = Todo.where(creator_id: @user.id).where(private: true).where.not(todo_solution_id: nil).paginate(page: params[:comppage]).order(:due)
-    end
   end
 
   def todos
