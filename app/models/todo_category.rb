@@ -1,8 +1,8 @@
 class TodoCategory < ActiveRecord::Base
   has_many :todos
-  
-  validates :name, length: {in:3..20}
-  
+
+    validates :name, presence: true, length: { in: 2..30 }
+
   def to_s
     self.name
   end

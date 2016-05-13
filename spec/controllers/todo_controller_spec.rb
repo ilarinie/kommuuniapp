@@ -22,7 +22,7 @@ RSpec.describe TodosController, type: :controller do
       end
     end
     context 'with invalid attributes' do
-      it 'doesnt create chore' do
+      it 'doesnt create todo' do
         FactoryGirl.create(:user)
         session[:user_id] = 1
         post :create, todo: FactoryGirl.attributes_for(:todo, title:nil)
