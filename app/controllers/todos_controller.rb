@@ -8,6 +8,7 @@ def new
 end
 
 def show
+  redirect_to :root, notice: "No permission to view todo" if not permission_to_view
   @solution = TodoSolution.new
 end
 
@@ -36,6 +37,18 @@ end
 
 
 private
+
+def permission_to_view
+  if @todo.private
+    if current_user.id != @todo.creator_id
+      false
+    else
+      true
+    end
+  else
+    true
+  end
+end
 
 def set_todo
   @todo = Todo.find(params[:id])

@@ -20,6 +20,7 @@ FactoryGirl.define do
   factory :todo do
     title "testtodo"
     description "desc"
+    private false
     due {DateTime.now+3.days}
 
     end

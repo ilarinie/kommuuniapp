@@ -4,6 +4,14 @@ RSpec.describe ChoresController, type: :controller do
   before :each do
     request.env["HTTP_REFERER"] = root_url
   end
+  describe "GET #new" do
+    it 'should render view if signed in' do
+      FactoryGirl.create(:user)
+      session[:user_id] = 1
+      get :new
+      expect(response).to render_template(:new)
+    end
+  end
   describe "GET index" do
     it "renders the index template" do
       FactoryGirl.create(:user)
