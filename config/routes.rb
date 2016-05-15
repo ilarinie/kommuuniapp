@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :chores
   resources :purchases
-  resources :purchase_categories, only: [:show, :new, :create]
+  resources :purchase_categories, only: [:show, :new, :create, :edit, :update]
   resources :todo_solutions, only: [:create, :destroy]
   resources :users
   resources :tasks, only: [:destroy]

@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <thead>
+    <th>
+      Chore
+    </th>
+    <th>
+      Times done
+    </th>
+  </thead>
+  <tbody>
+    <% chores.each do |chore| %>
+    <tr>
+      <td>
+        <%= Chore.find(chore[0]) %>
+      </td>
+      <td>
+        <%= chore[1] %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

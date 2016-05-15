@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   before_action :ensure_update_permission, only: [:update]
 
   def show
+    @chores = Chore.sort_by_user_task_count(@user)
   end
 
   def todos

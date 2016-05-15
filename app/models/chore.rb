@@ -61,6 +61,16 @@ class Chore < ActiveRecord::Base
     end
   end
 
+  def self.sort_by_user_task_count user
+    chores = Chore.pub
+    counts = {}
+    chores.each do |chore|
+      count = Task.where(user_id:user.id, chore_id:chore.id).count
+      counts[chore.id] = count if count != 0
+    end
+    counts.sort_by {|k,v| v}.reverse
+  end
+
   def sort_users_by_task_count
     @users = User.active
     maarat = {}

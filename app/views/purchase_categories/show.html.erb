@@ -1,4 +1,4 @@
-<h1><%= @category.name %></h1><br/>
+<h1><%= @purchase_category.name %> <%= link_to 'Edit', edit_purchase_category_path(@purchase_category), class:'btn btn-primary'%></h1><br/>
 
     <%= render 'purchases/selection_menu', categories: @categories, users:@users%>
 

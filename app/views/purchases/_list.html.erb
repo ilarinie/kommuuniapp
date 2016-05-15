@@ -16,6 +16,9 @@
       <th>
         Date
       </th>
+      <th>
+
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -39,6 +42,11 @@
       <td>
         <%= purchase.created_at %>
       </td>
+      <% if current_user == purchase.user %>
+      <td>
+        <%= link_to 'Delete', purchase, method: :delete, data: {confirm: 'Are you sure you want to delete the purchase?'}, class:'btn btn-danger' %>
+      </td>
+      <% end %>
     </tr>
     <% end %>
   </tbody>

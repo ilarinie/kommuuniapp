@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :purchase_average, :average_purchase
 
+  before_action :set_users
+
+  def set_users
+    @active_users = User.active
+  end
+
   def current_user
     return nil if session[:user_id].nil?
     User.find(session[:user_id])
