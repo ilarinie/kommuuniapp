@@ -7,7 +7,7 @@ wadrod2016 -projekti
 
 [Dokumentaatio](https://github.com/ilarinie/kommuuniapp/wiki)
 
-[Tuntikirjanpito](https://github.com/ilarinie/kommuuniapp/blob/master/docs/tuntikirjanpito.md)
+[Tuntikirjanpito](https://github.com/ilarinie/kommuuniapp/wiki/Tuntikirjanpito)
 
 [Heroku - kommuuniapp.herokuapp.com](http://kommuuniapp.herokuapp.com)
 
