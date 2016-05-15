@@ -54,5 +54,23 @@ RSpec.describe TodosController, type: :controller do
       expect(response).to render_template(:new)
     end
   end
+  describe "DELETE #delete" do
+    it 'should delete public' do
+      FactoryGirl.create(:user)
+      session[:user_id] = 1
+      todo = FactoryGirl.create(:todo,private:true, creator_id:1)
+      expect(Todo.count).to eq(1)
+      delete :destroy, id:todo.id
+      expect(Todo.count).to eq(0)
+    end
+    it 'should not delete someone elses private todo' do
+      FactoryGirl.create(:user)
+      session[:user_id] = 1
+      todo = FactoryGirl.create(:todo,private:true, creator_id:2)
+      delete :destroy, id:todo.id
+      expect(Todo.count).to eq(1)
+    end
+
+  end
 
 end
