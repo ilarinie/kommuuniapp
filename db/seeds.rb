@@ -10,9 +10,8 @@
 PurchaseCategory.create! id:1, name:"Refund"
 User.create(name:"Adminaccount",username:"admin",password:"admin",password_confirmation:"admin", admin:true, deactivated:false)
 
-# Mock data only used for testing purposes in development
-case Rails.env
-when "development"
+# Mock data only used for testing purposes in development and demo
+
   users = 4
   chores = 5
   purchases = 50
@@ -52,7 +51,3 @@ when "development"
   (1..todos).each do |i|
     Todo.create! title:Faker::Lorem.word, description:Faker::Lorem.paragraph, todo_category_id:rand(1..todo_categories), creator_id:rand(1..users), due:Faker::Time.between(DateTime.now + 365, DateTime.now), private:[true,false].sample
   end
-
-when "production"
-
-end
