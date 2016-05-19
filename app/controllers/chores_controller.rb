@@ -16,7 +16,7 @@ class ChoresController < ApplicationController
       redirect_to :root, notice: 'That chore is private'
     end
     @users = @chore.sort_users_by_task_count
-    @tasks = Task.where(chore:@chore).limit(10)
+    @tasks = Task.where(chore:@chore).order(created_at: :desc).limit(10)
   end
 
   # GET /chores/new
